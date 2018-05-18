@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<title>樂樂活大解析</title>
+		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
+
+		<link rel="canonical" href="" />
+		<meta property="og:url" content="" />
+
+		<meta name="description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?"/>
+		<meta property="og:description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?" />
+		<meta property="og:site_name" content="樂樂活大解析" />
+		<meta property="og:locale" content="zh_TW" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="樂樂活大解析" />
+		<meta property="og:image" content="" />
+
+		<meta http-equiv="Content-Language" content="zh-tw" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/static/build/css/main.css?v=<%=version%>">
+
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<div id="analysis" class="happy-living">
+			<topbar></topbar>
+
+			<div class="main-container">
+				<div v-show="by === 'info' ">
+					<div class="graph-container">
+						<div class="rank-table">
+							<div class="rank-title">需求排名</div>
+							<div class="rank-row" v-for="n in rankNeed">
+								<div class="rank-icon">
+									<img v-bind:src="n.image">
+								</div>
+								<div class="rank-bar">
+									<div class="bar-name">{{n.name}}</div>
+									<div class="bar" v-bind:style="n.width">{{n.str}} 人 ({{n.ratio}} %)</div>
+								</div>
+							</div>
+						</div>
+						<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
+					</div>
+				</div>
+
+				<div v-show="by === 'need' ">
+					222
+				</div>
+
+				<div class="control-bar">
+					<div class="option-container">
+						<div class="label">分類</div>
+						<select v-model="by">
+							<option value="info">基本</option>
+							<option value="need">需求</option>
+						</select>
+
+						<span v-show="by === 'info' ">
+							<div class="label">姓別</div>
+							<select v-model="gender" v-on:change="UpdateGraph();">
+								<option value="全部">全部</option>
+								<option v-for="g in header.gender" v-bind:value="g.id">{{g.name}}</option>
+							</select>
+
+							<div class="label">縣市</div>
+							<select v-model="county" v-on:change="UpdateGraph();">
+								<option value="全部">全部</option>
+								<option v-for="c in header.county" v-bind:value="c.id">{{c.name}}</option>
+							</select>
+
+							<div class="label">年齡</div>
+							<select v-model="minAge" v-on:change="UpdateGraph();">
+								<option v-for="a in header.age" v-if="a.minAge>0" v-bind:value="a.minAge">{{a.minAge}}</option>
+							</select> ~ 
+							<select v-model="maxAge" v-on:change="UpdateGraph();">
+								<option v-for="a in header.age" v-if="a.maxAge>0" v-bind:value="a.maxAge">{{a.maxAge}}</option>
+							</select>
+
+							<div class="label">居住</div>
+							<select v-model="living" v-on:change="UpdateGraph();">
+								<option value="全部">全部</option>
+								<option v-for="l in header.living" v-bind:value="l.id">{{l.name}}</option>
+							</select>
+						</span>
+
+						<span v-show="by === 'need' ">
+							<div class="label">需求</div>
+							<select v-model="curNeed" v-on:change="UpdateNeedOption();">
+								<option value="全部">全部</option>
+								<option v-for="(n,idx) in header.need" v-bind:value="idx">{{n.name}}</option>
+							</select>
+
+							<div v-show="curNeed !== '全部' ">
+								<div class="label">麻煩</div>
+								<select v-model="curRisk" v-on:change="UpdateRiskOption();">
+									<option value="全部">全部</option>
+									<option v-for="(r,idx) in needOption" v-bind:value="idx">{{r.name}}</option>
+								</select>
+							</div>
+
+							<div v-show="curRisk !== '全部' ">
+								<div class="label">解法</div>
+								<select v-model="curSolution" v-on:change="UpdateGraph();">
+									<option value="全部">全部</option>
+									<option v-for="(s,idx) in riskOption" v-bind:value="idx">{{s.name}}</option>
+								</select>
+							</div>
+						</span>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/static/util.js?v=<%=version%>"></script>
+		<script src="/static/mapTW.js?v=<%=version%>"></script>
+		<script src="/static/svgGraph.js?v=<%=version%>"></script>
+		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script src="/static/analysis.js?v=<%=version%>"></script>
+	</body>
+</html>

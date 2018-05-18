@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<title>樂樂活大解析</title>
+		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
+
+		<link rel="canonical" href="" />
+		<meta property="og:url" content="" />
+
+		<meta name="description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?"/>
+		<meta property="og:description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?" />
+		<meta property="og:site_name" content="樂樂活大解析" />
+		<meta property="og:locale" content="zh_TW" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="樂樂活大解析" />
+		<meta property="og:image" content="" />
+
+		<meta http-equiv="Content-Language" content="zh-tw" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/static/build/css/main.css?v=<%=version%>">
+
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<div id="app" class="happy-living">
+			<!--<div class="topbar">
+				<a href="/"><img class="logo" src="/static/Image/logo.png?v=<%=version%>"></a>
+				<img class="menu-bt" src="/static/Image/menu-button.png?v=<%=version%>" v-on:click="ToggleMenu();">
+				<div class="bt-container">
+					<a href="/method"><div class="bt">研究方法</div></a>
+					<a href="/opendata"><div class="bt">開放資料</div></a>
+					<a href="/about"><div class="bt">關於本站</div></a>
+				</div>
+			</div>
+			<ul id="menu" class="menu-container">
+				<li><a href="/method">研究方法</a></li>
+				<li><a href="/opendata">開放資料</a></li>
+				<li><a href="/about">關於本站</a></li>
+			</ul>-->
+			<topbar></topbar>
+			
+			<div class="main-container">
+				<div class="center-p"><a href="http://happyliving.stansfoundation.org/index.html" target="_blank">樂樂活大家講</a>是<a href="http://www.lyccc.org.tw/" target="_blank">智榮基金會|龍吟研論</a> 於106/8/17 ~ 10/18 針對未來長者需求展開的線上問卷調查，期間共計有79,441人成功填答，有效樣本數68,323筆*。本站將這些資料開放釋出，並提供視覺化工具協助大家解讀資料。高齡社會中，哪些需求是長者們真正在乎的，哪些解決問題的方式是長者們真正想要的，讓我們一起深入探索吧！
+				</div>
+				
+				<div class="remark center">
+					*備註: 有效樣本數為剔除填答總秒數60秒以下及7200秒以上之資料。
+				</div>
+				
+				<div class="scroll-option">
+					<a href="#quest"><div class="scroll-bt">問卷題目</div></a>
+					<a href="#user-info"><div class="scroll-bt">填答者分佈</div></a>
+					<a href="#analysis"><div class="scroll-bt">填答分析</div></a>
+				</div>
+				<a name="quest"></a>
+				<div class="category">問卷題目</div>
+				
+				<div class="quest-need">{{ quest.q[0] }}</div>
+				<div class="ans-container" v-for="(n,nIndex) in quest.need">
+					<div class="ans-need" v-bind:class="{selected: openNeed == nIndex}" v-on:click="ToggleNeed(nIndex,$event);">
+						<img class="quest-icon" v-bind:src="n.image">
+						{{n.title}}
+					</div>
+
+					<div class="quest-risk" v-show="openNeed == nIndex">{{ quest.q[1] }}</div>
+					<div class="risk-container" v-show="openNeed == nIndex" v-for="(r,rIndex) in n.risk">
+						<div class="ans-risk" v-on:click="ToggleRisk(rIndex,$event);">
+							<div class="risk-box" v-bind:class="{selected: openRisk == rIndex}">
+								<img class="quest-icon" v-bind:src="r.image">
+								<div class="risk-text">{{r.title}}</div>
+							</div>
+						</div>
+						
+						<div class="quest-solution" v-show="openRisk == rIndex">{{ quest.q[2] }}</div>
+						<ul v-show="openRisk == rIndex">
+							<li v-for="s in r.solution">{{s}}</li>
+						</ul>
+						
+					</div>
+					
+				</div>
+
+				<a name="user-info"></a>
+				<div class="category">填答者分佈</div>
+				<div class="graph-container">
+					<info-graph ref="genderGraph"></info-graph><!--
+				 --><info-graph ref="countyGraph"></info-graph><!--
+				 --><info-graph ref="ageGraph"></info-graph><!--
+				 --><info-graph ref="livingGraph"></info-graph>
+
+				</div>
+
+				<a name="analysis"></a>
+				<div class="category">填答分析</div>
+				<div class="center-p">
+					為反應全台母體的人口結構，本研究分析依據主計處2017.09發布人口統計資料，以各縣市區域的性別與年齡進行事後分層加權值計算。<span class="warning">填答分析之數據皆為加權後的結果</span>。
+				</div>
+				<div class="analysis-option">
+					<a href="/analysis?by=info"><div class="analysis-bt">依基本資料分析</div></a>
+					<a href="/analysis?by=need"><div class="analysis-bt">依問題需求分析</div></a>
+				</div>
+			</div>
+		</div>
+		<script src="/static/util.js?v=<%=version%>"></script>
+		<script src="/static/mapTW.js?v=<%=version%>"></script>
+		<script src="/static/svgGraph.js?v=<%=version%>"></script>
+		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script src="/static/infoGraph.js?v=<%=version%>"></script>
+		<script src="/static/main.js?v=<%=version%>"></script>
+	</body>
+</html>
