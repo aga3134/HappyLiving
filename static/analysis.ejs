@@ -29,22 +29,59 @@
 		<div id="analysis" class="happy-living">
 			<topbar></topbar>
 
-			<div class="main-container">
+			<div class="analysis-container">
 				<div v-show="by === 'info' ">
-					<div class="graph-container">
-						<div class="rank-table">
-							<div class="rank-title">需求排名</div>
-							<div class="rank-row" v-for="n in rankNeed">
-								<div class="rank-icon">
-									<img v-bind:src="n.image">
+					<div id="switchH" class="horizontal-switch">
+						<div class="full-width-item">
+							<div class="graph-container">
+								<div class="rank-table">
+									<div class="rank-title">需求排名</div>
+									<div class="rank-row" v-for="(n,idx) in rankNeed" v-on:click="SelectNeed(n.need);">
+										<div class="rank-icon">
+											<img v-bind:src="n.image">
+										</div>
+										<div class="rank-bar">
+											<div class="bar-name">{{n.name}}</div>
+											<div class="bar" v-bind:style="n.width">{{n.str}} 人 ({{n.ratio}} %)</div>
+										</div>
+									</div>
 								</div>
-								<div class="rank-bar">
-									<div class="bar-name">{{n.name}}</div>
-									<div class="bar" v-bind:style="n.width">{{n.str}} 人 ({{n.ratio}} %)</div>
-								</div>
+								<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
 							</div>
 						</div>
-						<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
+						<div class="full-width-item">
+							<div class="graph-container">
+								<div class="rank-table">
+									<div class="back-bt" v-on:click="BackToPrev();"><< 返回</div>
+									<div class="rank-title">
+										麻煩排名
+									</div>
+									<div class="rank-row" v-for="(r,idx) in rankRisk" v-on:click="SelectRisk(r.risk);">
+										<div class="rank-icon">
+											<img v-bind:src="r.image">
+										</div>
+										<div class="rank-bar">
+											<div class="bar-name">{{r.name}}</div>
+											<div class="bar" v-bind:style="r.width">{{r.str}} 人 ({{r.ratio}} %)</div>
+										</div>
+									</div>
+								</div>
+								<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
+							</div>
+						</div>
+						<div class="full-width-item">
+							<div class="graph-container">
+								<div class="rank-table">
+									<div class="back-bt" v-on:click="BackToPrev();"><< 返回</div>
+									<div class="rank-title">
+										解法喜好
+									</div>
+									<div class="rank-row" v-for="(s,idx) in rankSolution">
+									</div>
+								</div>
+								<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -61,7 +98,7 @@
 						</select>
 
 						<span v-show="by === 'info' ">
-							<div class="label">姓別</div>
+							<div class="label">性別</div>
 							<select v-model="gender" v-on:change="UpdateGraph();">
 								<option value="全部">全部</option>
 								<option v-for="g in header.gender" v-bind:value="g.id">{{g.name}}</option>

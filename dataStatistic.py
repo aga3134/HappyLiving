@@ -66,13 +66,13 @@ def CreateHeader():
         {"id":"n3_health_risk","name":"健康風險預告"},
         {"id":"n3_eat_nutri","name":"吃得營養健康"},
         {"id":"n3_med_diagno","name":"有效就醫診斷"},
-        {"id":"n3_self_living","name":"自己打理生活"},
-        {"id":"n3_tech_learn","name":"學習數位科技"},
+        {"id":"n3_safe_drive","name":"安全騎車開車"},
+        {"id":"n3_safe_walk","name":"輕鬆安全行走"},
         {"id":"n3_conv_transp","name":"方便大眾運輸"},
         {"id":"n3_learn_activ","name":"交流學習活動"},
         {"id":"n3_aging_travel","name":"適合長者旅遊環境"},
-        {"id":"n3_safe_drive","name":"安全騎車開車"},
-        {"id":"n3_safe_walk","name":"輕鬆安全行走"}]
+        {"id":"n3_self_living","name":"自己打理生活"},
+        {"id":"n3_tech_learn","name":"學習數位科技"}]
     
     #健康風險預告
     header["need"][0]["risk"] = [
@@ -204,79 +204,81 @@ def CreateHeader():
             {"id":"m_d6_s3","name":"偵測與警示不良姿勢的座椅"}]
          }]
          
-    #自己打理生活
+    #安全騎車開車
     header["need"][3]["risk"] = [
-        {"id":"self_living1","name":"老擔心忘記關火、關瓦斯，就怕發生意外。",
+        {"id":"safe_drive1","name":"適合長輩的電動車看起來安全，但坐上去就像不會走的老人。",
          "solution":[
-            {"id":"s_l1_s1","name":"爐火連結手機通知自己"},
-            {"id":"s_l1_s2","name":"可以遠端關閉爐火"},
-            {"id":"s_l1_s3","name":"可遠端監看家內狀況"},
-            {"id":"s_l1_s4","name":"定時自動關閉爐火"}]
+            {"id":"s_d1_s1","name":"機車造型般的三或四輪車"},
+            {"id":"s_d1_s2","name":"不像輪椅的座椅造型"}]
          },
-        {"id":"self_living2","name":"常常忘東忘西，沒寫下來就會忘記。",
+        {"id":"safe_drive2","name":"騎車時反應比較慢，經常被其他汽機車嫌。",
          "solution":[
-            {"id":"s_l2_s1","name":"記錄工具可以隨身攜帶"},
-            {"id":"s_l2_s2","name":"記錄工具要方便使用"},
-            {"id":"s_l2_s3","name":"記錄工具有自動提醒功能"}]
+            {"id":"s_d2_s1","name":"有語音導航系統的安全帽"},
+            {"id":"s_d2_s2","name":"機車自動駕駛"},
+            {"id":"s_d2_s3","name":"危險路段語音提醒"},
+            {"id":"s_d2_s4","name":"道路標示加大、加亮"}]
          },
-        {"id":"self_living3","name":"常常坐著就打瞌睡，冷氣、電視都沒關，好浪費電。",
+        {"id":"safe_drive3","name":"年紀大就怕駕車途中，人不舒服或突然病發。",
          "solution":[
-            {"id":"s_l3_s1","name":"冷氣自動偵測與關閉"},
-            {"id":"s_l3_s2","name":"電燈自動偵測與關閉"},
-            {"id":"s_l3_s3","name":"家電自動偵測與關閉"}]
+            {"id":"s_d3_s1","name":"汽機車有駕駛人生理監控"},
+            {"id":"s_d3_s2","name":"汽機車有駕駛人生理異常警示"},
+            {"id":"s_d3_s3","name":"汽機車自動駕駛"},
+            {"id":"s_d3_s4","name":"汽機車可發出警報請附近路人協助"}]
          },
-        {"id":"self_living4","name":"年紀大體力大不如前，打掃家裡容易腰痠背痛。",
+        {"id":"safe_drive4","name":"未來有自動駕駛幫我開車，要是我和它的判斷不一樣，會很混亂。",
          "solution":[
-            {"id":"s_l4_s1","name":"掃拖地機器人"},
-            {"id":"s_l4_s2","name":"自動擦灰機"},
-            {"id":"s_l4_s3","name":"家事服務員"},
-            {"id":"s_l4_s4","name":"家具有自動升降功能"}]
+            {"id":"s_d4_s1","name":"汽車自動駕駛使用訓練"},
+            {"id":"s_d4_s2","name":"汽車學習駕駛人的習慣"},
+            {"id":"s_d4_s3","name":"專人即時諮詢服務"}]
          },
-        {"id":"self_living5","name":"年紀大手腳不俐落，要爬高、出力的家事做不來。",
+        {"id":"safe_drive5","name":"搬動機車好吃力，一不小心可能閃到腰、拉傷手。",
          "solution":[
-            {"id":"s_l5_s1","name":"簡易居家修繕服務"},
-            {"id":"s_l5_s2","name":"家事服務員"},
-            {"id":"s_l5_s3","name":"大樓管理公司有修繕服務"}]
+            {"id":"s_d5_s1","name":"機車車體輕量化"},
+            {"id":"s_d5_s2","name":"電動輔助移車系統"},
+            {"id":"s_d5_s3","name":"足夠的機車停車格"}]
          },
-        {"id":"self_living6","name":"我不想裝監視器，但又想讓兒女放心，知道我好好的。",
+        {"id":"safe_drive6","name":"想更快知道突發路況，一邊開車一邊看導航，反而更危險。",
          "solution":[
-            {"id":"s_l6_s1","name":"自動定時報平安"},
-            {"id":"s_l6_s2","name":"居家動態自動通知"},
-            {"id":"s_l6_s3","name":"監視器裝在客、餐廳"},
-            {"id":"s_l6_s4","name":"自己報平安的簡易設備"}]
+            {"id":"s_d6_s1","name":"導航系統自動提示路況"},
+            {"id":"s_d6_s2","name":"導航系統自動建議換路"}]
          }]
          
-    #學習數位科技
+    #輕鬆安全行走
     header["need"][4]["risk"] = [
-        {"id":"tech_learn1","name":"我不太會操作3C產品，孩子被我問得不耐煩，嫌我學很慢又記不住。",
+        {"id":"safe_walk1","name":"穿裙子或短褲就會露出護膝，別人看到就知道我老了膝蓋沒力。",
          "solution":[
-            {"id":"t_l1_s1","name":"電話客服提供諮詢"},
-            {"id":"t_l1_s2","name":"數位裝置內建隨身數位助教"},
-            {"id":"t_l1_s3","name":"影片教學操作步驟"}]
+            {"id":"s_w1_s1","name":"美觀的輔具"},
+            {"id":"s_w1_s2","name":"有支撐功能的長褲"},
+            {"id":"s_w1_s3","name":"不像傳統拐杖的輔具"},
+            {"id":"s_w1_s4","name":"有輔助行走功能的鞋襪"}]
          },
-        {"id":"tech_learn2","name":"我不敢亂點亂按手機，怕按錯出問題。",
+        {"id":"safe_walk2","name":"出門要帶好多東西，加上買菜、購物就提不太動，上下樓梯好費力。",
          "solution":[
-            {"id":"t_l2_s1","name":"回到初始畫面的按鍵"},
-            {"id":"t_l2_s2","name":"電話客服提供諮詢"}]
+            {"id":"s_w2_s1","name":"可上下樓梯的購物推車"},
+            {"id":"s_w2_s2","name":"公寓增設樓梯升降椅"},
+            {"id":"s_w2_s3","name":"自動跟隨購物車"},
+            {"id":"s_w2_s4","name":"專人陪同採買和提重物"}]
          },
-        {"id":"tech_learn3","name":"政府和廠商有些消息只公告在網路上，我哪會知道。",
+        {"id":"safe_walk3","name":"人行道停機車、堆東西路面不平，我得小心走路免得發生意外。",
          "solution":[
-            {"id":"t_l3_s1","name":"鄰里長幫忙通知"},
-            {"id":"t_l3_s2","name":"手機簡訊通知"},
-            {"id":"t_l3_s3","name":"郵寄紙本通知"},
-            {"id":"t_l3_s4","name":"手機中有數位佈告欄"}]
+            {"id":"s_w3_s1","name":"巷弄夜間照明"},
+            {"id":"s_w3_s2","name":"政府鋪平行人專用道"},
+            {"id":"s_w3_s3","name":"高低差警示裝置"},
+            {"id":"s_w3_s4","name":"政府規定人行道淨空"}]
          },
-        {"id":"tech_learn4","name":"網路消息傳來傳去，都不知道是真是假。",
+        {"id":"safe_walk4","name":"如果有天得坐輪椅，外出還得要挑裝得下也願意載輪椅的交通工具。",
          "solution":[
-            {"id":"t_l4_s1","name":"政府主動刪除假消息"},
-            {"id":"t_l4_s2","name":"政府主動通知訊息為假"},
-            {"id":"t_l4_s3","name":"政府在假消息後加正確訊息連結"},
-            {"id":"t_l4_s4","name":"可訂閱經過檢驗的資訊"}]
+            {"id":"s_w4_s1","name":"小轎車的後行李箱加大"},
+            {"id":"s_w4_s2","name":"可輪椅直入的後座空間"},
+            {"id":"s_w4_s3","name":"自動折疊功能的輪椅、代步車"},
+            {"id":"s_w4_s4","name":"收合超小型輪椅"}]
          },
-        {"id":"tech_learn5","name":"上網查資料好難，要打什麼字才找得到？",
+        {"id":"safe_walk5","name":"我擔心更老以後，走動得用助行器，可是家裡空間和動線不太方便。",
          "solution":[
-            {"id":"t_l5_s1","name":"專人協助查詢資訊服務"},
-            {"id":"t_l5_s2","name":"語音搜尋比對服務"}]
+            {"id":"s_w5_s1","name":"居家用輕便助行輔具"},
+            {"id":"s_w5_s2","name":"家事機器人"},
+            {"id":"s_w5_s3","name":"將家裡改造成無障礙空間"},
+            {"id":"s_w5_s4","name":"不用走動操作就能自動運作的家電"}]
          }]
          
     #方便大眾運輸
@@ -386,82 +388,82 @@ def CreateHeader():
             {"id":"a_t5_s3","name":"照相軟體辨識臉自動分送檔案"}]
          }]
          
-    #安全騎車開車
+    #自己打理生活
     header["need"][8]["risk"] = [
-        {"id":"safe_drive1","name":"適合長輩的電動車看起來安全，但坐上去就像不會走的老人。",
+        {"id":"self_living1","name":"老擔心忘記關火、關瓦斯，就怕發生意外。",
          "solution":[
-            {"id":"s_d1_s1","name":"機車造型般的三或四輪車"},
-            {"id":"s_d1_s2","name":"不像輪椅的座椅造型"}]
+            {"id":"s_l1_s1","name":"爐火連結手機通知自己"},
+            {"id":"s_l1_s2","name":"可以遠端關閉爐火"},
+            {"id":"s_l1_s3","name":"可遠端監看家內狀況"},
+            {"id":"s_l1_s4","name":"定時自動關閉爐火"}]
          },
-        {"id":"safe_drive2","name":"騎車時反應比較慢，經常被其他汽機車嫌。",
+        {"id":"self_living2","name":"常常忘東忘西，沒寫下來就會忘記。",
          "solution":[
-            {"id":"s_d2_s1","name":"有語音導航系統的安全帽"},
-            {"id":"s_d2_s2","name":"機車自動駕駛"},
-            {"id":"s_d2_s3","name":"危險路段語音提醒"},
-            {"id":"s_d2_s4","name":"道路標示加大、加亮"}]
+            {"id":"s_l2_s1","name":"記錄工具可以隨身攜帶"},
+            {"id":"s_l2_s2","name":"記錄工具要方便使用"},
+            {"id":"s_l2_s3","name":"記錄工具有自動提醒功能"}]
          },
-        {"id":"safe_drive3","name":"年紀大就怕駕車途中，人不舒服或突然病發。",
+        {"id":"self_living3","name":"常常坐著就打瞌睡，冷氣、電視都沒關，好浪費電。",
          "solution":[
-            {"id":"s_d3_s1","name":"汽機車有駕駛人生理監控"},
-            {"id":"s_d3_s2","name":"汽機車有駕駛人生理異常警示"},
-            {"id":"s_d3_s3","name":"汽機車自動駕駛"},
-            {"id":"s_d3_s4","name":"汽機車可發出警報請附近路人協助"}]
+            {"id":"s_l3_s1","name":"冷氣自動偵測與關閉"},
+            {"id":"s_l3_s2","name":"電燈自動偵測與關閉"},
+            {"id":"s_l3_s3","name":"家電自動偵測與關閉"}]
          },
-        {"id":"safe_drive4","name":"未來有自動駕駛幫我開車，要是我和它的判斷不一樣，會很混亂。",
+        {"id":"self_living4","name":"年紀大體力大不如前，打掃家裡容易腰痠背痛。",
          "solution":[
-            {"id":"s_d4_s1","name":"汽車自動駕駛使用訓練"},
-            {"id":"s_d4_s2","name":"汽車學習駕駛人的習慣"},
-            {"id":"s_d4_s3","name":"專人即時諮詢服務"}]
+            {"id":"s_l4_s1","name":"掃拖地機器人"},
+            {"id":"s_l4_s2","name":"自動擦灰機"},
+            {"id":"s_l4_s3","name":"家事服務員"},
+            {"id":"s_l4_s4","name":"家具有自動升降功能"}]
          },
-        {"id":"safe_drive5","name":"搬動機車好吃力，一不小心可能閃到腰、拉傷手。",
+        {"id":"self_living5","name":"年紀大手腳不俐落，要爬高、出力的家事做不來。",
          "solution":[
-            {"id":"s_d5_s1","name":"機車車體輕量化"},
-            {"id":"s_d5_s2","name":"電動輔助移車系統"},
-            {"id":"s_d5_s3","name":"足夠的機車停車格"}]
+            {"id":"s_l5_s1","name":"簡易居家修繕服務"},
+            {"id":"s_l5_s2","name":"家事服務員"},
+            {"id":"s_l5_s3","name":"大樓管理公司有修繕服務"}]
          },
-        {"id":"safe_drive6","name":"想更快知道突發路況，一邊開車一邊看導航，反而更危險。",
+        {"id":"self_living6","name":"我不想裝監視器，但又想讓兒女放心，知道我好好的。",
          "solution":[
-            {"id":"s_d6_s1","name":"導航系統自動提示路況"},
-            {"id":"s_d6_s2","name":"導航系統自動建議換路"}]
+            {"id":"s_l6_s1","name":"自動定時報平安"},
+            {"id":"s_l6_s2","name":"居家動態自動通知"},
+            {"id":"s_l6_s3","name":"監視器裝在客、餐廳"},
+            {"id":"s_l6_s4","name":"自己報平安的簡易設備"}]
          }]
          
-    #輕鬆安全行走
+    #學習數位科技
     header["need"][9]["risk"] = [
-        {"id":"safe_walk1","name":"穿裙子或短褲就會露出護膝，別人看到就知道我老了膝蓋沒力。",
+        {"id":"tech_learn1","name":"我不太會操作3C產品，孩子被我問得不耐煩，嫌我學很慢又記不住。",
          "solution":[
-            {"id":"s_w1_s1","name":"美觀的輔具"},
-            {"id":"s_w1_s2","name":"有支撐功能的長褲"},
-            {"id":"s_w1_s3","name":"不像傳統拐杖的輔具"},
-            {"id":"s_w1_s4","name":"有輔助行走功能的鞋襪"}]
+            {"id":"t_l1_s1","name":"電話客服提供諮詢"},
+            {"id":"t_l1_s2","name":"數位裝置內建隨身數位助教"},
+            {"id":"t_l1_s3","name":"影片教學操作步驟"}]
          },
-        {"id":"safe_walk2","name":"出門要帶好多東西，加上買菜、購物就提不太動，上下樓梯好費力。",
+        {"id":"tech_learn2","name":"我不敢亂點亂按手機，怕按錯出問題。",
          "solution":[
-            {"id":"s_w2_s1","name":"可上下樓梯的購物推車"},
-            {"id":"s_w2_s2","name":"公寓增設樓梯升降椅"},
-            {"id":"s_w2_s3","name":"自動跟隨購物車"},
-            {"id":"s_w2_s4","name":"專人陪同採買和提重物"}]
+            {"id":"t_l2_s1","name":"回到初始畫面的按鍵"},
+            {"id":"t_l2_s2","name":"電話客服提供諮詢"}]
          },
-        {"id":"safe_walk3","name":"人行道停機車、堆東西路面不平，我得小心走路免得發生意外。",
+        {"id":"tech_learn3","name":"政府和廠商有些消息只公告在網路上，我哪會知道。",
          "solution":[
-            {"id":"s_w3_s1","name":"巷弄夜間照明"},
-            {"id":"s_w3_s2","name":"政府鋪平行人專用道"},
-            {"id":"s_w3_s3","name":"高低差警示裝置"},
-            {"id":"s_w3_s4","name":"政府規定人行道淨空"}]
+            {"id":"t_l3_s1","name":"鄰里長幫忙通知"},
+            {"id":"t_l3_s2","name":"手機簡訊通知"},
+            {"id":"t_l3_s3","name":"郵寄紙本通知"},
+            {"id":"t_l3_s4","name":"手機中有數位佈告欄"}]
          },
-        {"id":"safe_walk4","name":"如果有天得坐輪椅，外出還得要挑裝得下也願意載輪椅的交通工具。",
+        {"id":"tech_learn4","name":"網路消息傳來傳去，都不知道是真是假。",
          "solution":[
-            {"id":"s_w4_s1","name":"小轎車的後行李箱加大"},
-            {"id":"s_w4_s2","name":"可輪椅直入的後座空間"},
-            {"id":"s_w4_s3","name":"自動折疊功能的輪椅、代步車"},
-            {"id":"s_w4_s4","name":"收合超小型輪椅"}]
+            {"id":"t_l4_s1","name":"政府主動刪除假消息"},
+            {"id":"t_l4_s2","name":"政府主動通知訊息為假"},
+            {"id":"t_l4_s3","name":"政府在假消息後加正確訊息連結"},
+            {"id":"t_l4_s4","name":"可訂閱經過檢驗的資訊"}]
          },
-        {"id":"safe_walk5","name":"我擔心更老以後，走動得用助行器，可是家裡空間和動線不太方便。",
+        {"id":"tech_learn5","name":"上網查資料好難，要打什麼字才找得到？",
          "solution":[
-            {"id":"s_w5_s1","name":"居家用輕便助行輔具"},
-            {"id":"s_w5_s2","name":"家事機器人"},
-            {"id":"s_w5_s3","name":"將家裡改造成無障礙空間"},
-            {"id":"s_w5_s4","name":"不用走動操作就能自動運作的家電"}]
+            {"id":"t_l5_s1","name":"專人協助查詢資訊服務"},
+            {"id":"t_l5_s2","name":"語音搜尋比對服務"}]
          }]
+         
+    
     
     return header
 
@@ -472,7 +474,7 @@ def CreateEmptyStruct():
     obj["county"] = ""
     obj["living"] = ""
     obj["num"] = 0
-    obj["lang"] = [0,0,0]
+    obj["lang"] = [0,0,0,0]
     obj["livewith"] = [0,0,0,0,0]
     obj["need"] = [{"num":0},{"num":0},{"num":0},{"num":0},{"num":0},
        {"num":0},{"num":0},{"num":0},{"num":0},{"num":0}]
@@ -943,7 +945,9 @@ def DataToJSON(f):
         obj["num"] += 1
         
         if util.IsNumber(lang):
-            obj["lang"][int(lang)-1] += 1
+            obj["lang"][int(lang)] += 1
+        else:
+            obj["lang"][0] += 1
             
         #update living with num
         for i in range(0,len(obj["livewith"])):    
@@ -951,7 +955,18 @@ def DataToJSON(f):
 
         #update need num
         for nIndex in range(0,len(obj["need"])):
-            n = obj["need"][nIndex]
+            dIndex = nIndex
+            #question n3 swtiches positions for need 3,8 and 4,9
+            if(dIndex == 3):
+                dIndex = 8
+            elif(dIndex == 4):
+                dIndex = 9
+            elif(dIndex == 8):
+                dIndex = 3
+            elif(dIndex == 9):
+                dIndex = 4
+            
+            n = obj["need"][dIndex]
             if not util.IsNumber(need[nIndex]):
                 continue
             n["num"] += int(need[nIndex])
@@ -988,6 +1003,7 @@ def DataToJSON(f):
     #print(total)
     return result
    
+
 def CreateTable(connection):
     with connection.cursor() as cursor:
         sql = "CREATE TABLE IF NOT EXISTS HLBasicInfo (\
@@ -997,8 +1013,14 @@ def CreateTable(connection):
             living VARCHAR(4),\
             num INT,\
             weight FLOAT,\
-            lang VARCHAR(255),\
-            livewith VARCHAR(255),\
+            lang_Mandarin INT,\
+            lang_Taiwanese INT,\
+            lang_Hakka INT,\
+            liv_w_parents INT,\
+            liv_w_hw INT,\
+            liv_w_kid INT,\
+            liv_w_grandk INT,\
+            liv_w_others INT,\
             PRIMARY KEY (gender,age,county,living)\
             );"
         cursor.execute(sql)
@@ -1025,8 +1047,7 @@ def CreateTable(connection):
             risk VARCHAR(4),\
             num INT,\
             wNum FLOAT,\
-            PRIMARY KEY (gender,age,county,living,need,risk),\
-            INDEX(need,risk)\
+            PRIMARY KEY (need,risk,gender,age,county,living)\
             );"
         cursor.execute(sql)
         
@@ -1048,8 +1069,7 @@ def CreateTable(connection):
             wDeg3 FLOAT,\
             wDeg4 FLOAT,\
             wDeg5 FLOAT,\
-            PRIMARY KEY (gender,age,county,living,need,risk,solution),\
-            INDEX(need,risk,solution)\
+            PRIMARY KEY (need,risk,solution,gender,age,county,living)\
             );"
         cursor.execute(sql)
 
@@ -1057,7 +1077,7 @@ def CreateTable(connection):
     
 def JSONToDB(conn,header,data):
     print("json to db")
-    basicField = "gender,age,county,living,num,weight,lang,livewith"
+    basicField = "gender,age,county,living,num,weight,lang_Mandarin,lang_Taiwanese,lang_Hakka,liv_w_parents,liv_w_hw,liv_w_kid,liv_w_grandk,liv_w_others"
     needField = "gender,age,county,living,need,num,wNum"
     riskField = "gender,age,county,living,need,risk,num,wNum"
     solutionField = "gender,age,county,living,need,risk,solution,deg1,deg2,deg3,deg4,deg5,wDeg1,wDeg2,wDeg3,wDeg4,wDeg5"
@@ -1082,8 +1102,15 @@ def JSONToDB(conn,header,data):
             weight = sheet['O'+str(row)].value
         
         basic["weight"] = weight
-        basic["lang"] = " ".join(str(x) for x in d["lang"])
-        basic["livewith"] = " ".join(str(x) for x in d["livewith"])
+
+        basic["lang_Mandarin"] = d["lang"][1]
+        basic["lang_Taiwanese"] = d["lang"][2]
+        basic["lang_Hakka"] = d["lang"][3]
+        basic["liv_w_parents"] = d["livewith"][0]
+        basic["liv_w_hw"] = d["livewith"][1]
+        basic["liv_w_kid"] = d["livewith"][2]
+        basic["liv_w_grandk"] = d["livewith"][3]
+        basic["liv_w_others"] = d["livewith"][4]
         
         val = util.GenValue(basic,basicField)
         with connection.cursor() as cursor:
@@ -1172,6 +1199,6 @@ if __name__ == "__main__":
             with open("data.json","r", encoding="big5") as f:
                 data = json.load(f)
             JSONToDB(connection,header,data)
-        #SaveToDB()
+        SaveToDB()
     
     connection.close()

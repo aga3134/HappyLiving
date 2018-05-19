@@ -18,8 +18,14 @@ module.exports = function(sequelize, DataTypes) {
 		},
 	    num: DataTypes.INTEGER,
 	    weight: DataTypes.FLOAT,
-	    lang: DataTypes.STRING,
-	    livewith: DataTypes.STRING
+	    lang_Mandarin: DataTypes.INTEGER,
+        lang_Taiwanese: DataTypes.INTEGER,
+        lang_Hakka: DataTypes.INTEGER,
+        liv_w_parents: DataTypes.INTEGER,
+        liv_w_hw: DataTypes.INTEGER,
+        liv_w_kid: DataTypes.INTEGER,
+        liv_w_grandk: DataTypes.INTEGER,
+        liv_w_others: DataTypes.INTEGER
 	},
 	{
 		timestamps: false,
