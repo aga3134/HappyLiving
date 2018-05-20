@@ -107,6 +107,12 @@ Vue.component('info-graph', {
 				case "living":
 					this.DrawLiving();
 					break;
+				case "lang":
+					this.DrawLang();
+					break;
+				case "livewith":
+					this.DrawLivewith();
+					break;
 			}
 		},
 		FilterData: function(){
@@ -136,6 +142,12 @@ Vue.component('info-graph', {
 					this.graphTitle = "居住型態分佈";
 					living = "全部";
 					break;
+				case "lang":
+					this.graphTitle = "語言分佈";
+					break;
+				case "livewith":
+					this.graphTitle = "與誰同住分佈";
+					break;
 			}
 
 			if(gender != "全部"){
@@ -143,7 +155,7 @@ Vue.component('info-graph', {
 				arr = arr.filter(function(d){
 					return d.gender == gender;
 				});
-				this.graphTitle += " - "+header.county[gID].name;
+				this.graphTitle += " - "+header.gender[gID].name;
 			}
 			if(county != "全部"){
 				var cID = parseInt(county);
@@ -326,6 +338,83 @@ Vue.component('info-graph', {
 				return d.data.key+" "+num+"人 ("+d.data.ratio+"%)";
 			};
 			g_SvgGraph.PieChart(param);
+		},
+		DrawLang: function(){
+			var header = this.header;
+			var arr = this.FilterData();
+
+			var langGroup = [];
+			for(var i=0;i<header.lang.length;i++){
+				langGroup.push({key:header.lang[i].name,values:0});
+			}
+			for(var i=0;i<arr.length;i++){
+				langGroup[1].values += arr[i].lang_Mandarin;
+				langGroup[2].values += arr[i].lang_Taiwanese;
+				langGroup[3].values += arr[i].lang_Hakka;
+				langGroup[0].values += arr[i].num - arr[i].lang_Mandarin - arr[i].lang_Taiwanese - arr[i].lang_Hakka;
+			}
+
+			var total = d3.sum(langGroup,function(d){return d.values;});
+			for(var i=0;i<langGroup.length;i++){
+				langGroup[i].ratio = (100*langGroup[i].values/total).toFixed(1);;
+			}
+
+			var param = {};
+			param.selector = "#"+this.graphID;
+			param.textInfo = "#"+this.infoID;
+			param.value = "values";
+			param.key = "key";
+			param.data = langGroup;
+			param.inRadius = 50;
+			var unit = this.unit;
+			param.infoFn = function(d){
+				var num = g_Util.NumberWithCommas(d.data.values);
+				return d.data.key+" "+num+unit+" ("+d.data.ratio+"%)";
+			};
+			g_SvgGraph.PieChart(param);
+
+		},
+		DrawLivewith: function(){
+			var header = this.header;
+			var arr = this.FilterData();
+
+			var livewithGroup = [];
+			var total = 0;
+			for(var i=0;i<header.livewith.length;i++){
+				livewithGroup.push({key:header.livewith[i].name,values:0});
+			}
+			for(var i=0;i<arr.length;i++){
+				livewithGroup[0].values += arr[i].liv_w_parents;
+				livewithGroup[1].values += arr[i].liv_w_hw;
+				livewithGroup[2].values += arr[i].liv_w_kid;
+				livewithGroup[3].values += arr[i].liv_w_grandk;
+				livewithGroup[4].values += arr[i].liv_w_others;
+				total += arr[i].num;
+			}
+			
+			var maxV = d3.max(livewithGroup,function(d){return d.values;});
+			for(var i=0;i<livewithGroup.length;i++){
+				livewithGroup[i].ratio = (100*livewithGroup[i].values/total).toFixed(1);;
+			}
+
+			var param = {};
+	  		param.selector = "#"+this.graphID;
+	  		param.textInfo = "#"+this.infoID;
+	  		param.key = "key";
+	  		param.value = "values";
+	  		param.maxValue = maxV;
+	  		param.minColor = "#99FF99";
+	  		param.maxColor = "#669966";
+	  		param.unit = "人";
+	  		param.data = livewithGroup;
+	  		param.infoFn = function(d){
+				var num = g_Util.NumberWithCommas(d.values);
+				var str = d.key+" "+num+"人";
+				str += " ("+d.ratio+"%)";
+				return str;
+			};
+	  		g_SvgGraph.SortedBar(param);
+
 		},
 		OpenClass: function(){
 			return {"open": this.isOpen};

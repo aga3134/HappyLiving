@@ -115,6 +115,14 @@ var g_APP = new Vue({
         this.$refs.livingGraph.type = "living";
         this.$refs.livingGraph.UpdateGraph();
 
+        this.$refs.langGraph.input = json;
+        this.$refs.langGraph.type = "lang";
+        this.$refs.langGraph.UpdateGraph();
+
+        this.$refs.livewithGraph.input = json;
+        this.$refs.livewithGraph.type = "livewith";
+        this.$refs.livewithGraph.UpdateGraph();
+
       }.bind(this));
     }
   }

@@ -56,7 +56,16 @@ module.exports = function(app){
 
 		if(summary == 1){
 			var groupArr = ['gender','age','county','living'];
-			var attrArr = ['gender','age','county','living','weight',[DB.sequelize.fn('sum', DB.sequelize.col('num')),'num']];
+			var attrArr = ['gender','age','county','living','weight',
+				[DB.sequelize.fn('sum', DB.sequelize.col('num')),'num'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Mandarin')),'lang_Mandarin'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Taiwanese')),'lang_Taiwanese'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Hakka')),'lang_Hakka'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_parents')),'liv_w_parents'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_hw')),'liv_w_hw'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_kid')),'liv_w_kid'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_grandk')),'liv_w_grandk'],
+				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_others')),'liv_w_others']];
 			DB.HLBasicInfo.findAll({where: query, group: groupArr, attributes: attrArr})
 			.then(function(results){
 				res.send(JSON.stringify(results));
