@@ -164,8 +164,17 @@ module.exports = function(app){
 
 		if(summary == 1){
 			var groupArr = ['need','risk','solution'];
-			var attrArr = ['need','risk','solution',[DB.sequelize.fn('sum', DB.sequelize.col('num')),'num'],
-							[DB.sequelize.fn('sum', DB.sequelize.col('wNum')),'wNum']];
+			var attrArr = ['need','risk','solution',
+							[DB.sequelize.fn('sum', DB.sequelize.col('deg1')),'deg1'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('deg2')),'deg2'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('deg3')),'deg3'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('deg4')),'deg4'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('deg5')),'deg5'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('wDeg1')),'wDeg1'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('wDeg2')),'wDeg2'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('wDeg3')),'wDeg3'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('wDeg4')),'wDeg4'],
+							[DB.sequelize.fn('sum', DB.sequelize.col('wDeg5')),'wDeg5']];
 			DB.HLSolution.findAll({where: query, group: groupArr, attributes: attrArr})
 			.then(function(results){
 				res.send(JSON.stringify(results));

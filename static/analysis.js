@@ -18,7 +18,7 @@ var g_Analysis = new Vue({
     rankNeed: [],
     rankRisk: [],
     rankSolution: [],
-    selectLevel: 0,
+    levelSelect: 0,
     needSelect: 0,
     riskSelect: 0
   },
@@ -78,8 +78,10 @@ var g_Analysis = new Vue({
       return total;
     },
     UpdateRankGraph: function(){
+      var value = "wNum";
+      //若資料已存在就不再load一次
       var url = "";
-      switch(this.selectLevel){
+      switch(this.levelSelect){
         case 0:
           url = "/need?summary=1";
           break;
@@ -108,13 +110,12 @@ var g_Analysis = new Vue({
         //console.log(url);
         //console.log(json);
         
-        var value = "wNum";
         var maxV = d3.max(json,function(d){return d[value];});
         var total = this.ComputeTotalNum();
         var scaleW = total[value]/maxV;
         this.wTotal = total["wNum"].toFixed(2);
 
-        switch(this.selectLevel){
+        switch(this.levelSelect){
           case 0:
             for(var i=0;i<json.length;i++){
               var nID = json[i].need;
@@ -127,6 +128,9 @@ var g_Analysis = new Vue({
             this.rankNeed = json.sort(function(a,b){
               return b[value]-a[value];
             });
+            this.rankRisk = [];
+            this.rankSolution = [];
+
             break;
           case 1:
             for(var i=0;i<json.length;i++){
@@ -141,37 +145,110 @@ var g_Analysis = new Vue({
             this.rankRisk = json.sort(function(a,b){
               return b[value]-a[value];
             });
+            this.rankNeed = [];
+            this.rankSolution = [];
+
             break;
           case 2:
+            for(var i=0;i<json.length;i++){
+              var nID = json[i].need;
+              var rID = json[i].risk;
+              var sID = json[i].solution;
+              json[i].name = this.header.need[nID].risk[rID].solution[sID].name;
+              json[i].ratio = (100*json[i][value]/total[value]).toFixed(1);
+              json[i].num = [];
+              json[i].wNum = [];
+              for(var deg=0;deg<5;deg++){
+                var num = {};
+                num.minX = deg+1;
+                num.maxX = deg+1;
+                num.value = json[i]["deg"+(deg+1)];
+                json[i].num.push(num);
+                var wNum = {};
+                wNum.minX = deg+1;
+                wNum.maxX = deg+1;
+                wNum.value = json[i]["wDeg"+(deg+1)];
+                json[i].wNum.push(wNum);
+                //console.log(json[i]);
+              }
+            }
+            this.rankSolution = json;
+            this.rankNeed = [];
+            this.rankRisk = [];
+
+            //waiting for svg graph update
+            setTimeout(function(){
+              this.UpdateDegreeGraph(value);
+            }.bind(this),10);
+            
             break;
         }
 
       }.bind(this));
     },
+    UpdateDegreeGraph: function(key){
+      var maxV = 0;
+      for(var i=0;i<this.rankSolution.length;i++){
+        var s = this.rankSolution[i];
+        var v = d3.max(s[key],function(d){return d.value;});
+        if(v > maxV) maxV = v;
+      }
+
+      for(var i=0;i<this.rankSolution.length;i++){
+        var s = this.rankSolution[i];
+        //console.log(s[key]);
+        var param = {};
+        param.selector = "#degGraph"+i;
+        param.minX = 1;
+        param.maxX = 6;
+        param.keyXMin = "minX";
+        param.keyXMax = "maxX";
+        param.keyY = "value";
+        param.maxValue = maxV;
+        param.minColor = "#FF9999";
+        param.maxColor = "#996666";
+        param.unitY = "人";
+        param.unitX = "喜好程度";
+        param.textInfo = "#degInfo"+i;
+        param.data = s[key];
+        param.infoFn = function(d){
+          var num = g_Util.NumberWithCommas(d.value.toFixed(2));
+          var str = "";
+          switch(d.minX){
+            case 1: str="非常不喜歡"; break;
+            case 2: str="不喜歡"; break;
+            case 3: str="普通"; break;
+            case 4: str="喜歡"; break;
+            case 5: str="非常喜歡"; break;
+          }
+          return str+": "+num+"人";
+        };
+        g_SvgGraph.Histogram(param);
+      }
+    },
     SelectNeed: function(id){
       $("#switchH").css("left","-100%");
-      this.selectLevel = 1;
+      this.levelSelect = 1;
       this.needSelect = id;
       this.UpdateRankGraph();
     },
     SelectRisk: function(id){
       $("#switchH").css("left","-200%");
-      this.selectLevel = 2;
+      this.levelSelect = 2;
       this.riskSelect = id;
       this.UpdateRankGraph();
     },
     BackToPrev: function(){
-      if(this.selectLevel > 0) this.selectLevel--;
-      $("#switchH").css("left",(-this.selectLevel*100)+"%");
+      if(this.levelSelect > 0) this.levelSelect--;
+      $("#switchH").css("left",(-this.levelSelect*100)+"%");
+      this.UpdateRankGraph();
     },
     UpdateNeedOption: function(){
       if(this.curNeed > 0 && this.curNeed < this.header.need.length){
         this.needOption = this.header.need[this.curNeed].risk;
-
       }
       else{
         this.needOption = [];
-
       }
       this.curRisk = "全部";
       this.riskOption = [];

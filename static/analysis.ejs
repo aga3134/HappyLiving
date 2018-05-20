@@ -36,7 +36,7 @@
 							<div class="graph-container">
 								<div class="rank-table">
 									<div class="rank-title">需求排名</div>
-									<div class="rank-row" v-for="(n,idx) in rankNeed" v-on:click="SelectNeed(n.need);">
+									<div class="rank-row" v-for="n in rankNeed" v-on:click="SelectNeed(n.need);">
 										<div class="rank-icon">
 											<img v-bind:src="n.image">
 										</div>
@@ -56,7 +56,7 @@
 									<div class="rank-title">
 										麻煩排名
 									</div>
-									<div class="rank-row" v-for="(r,idx) in rankRisk" v-on:click="SelectRisk(r.risk);">
+									<div class="rank-row" v-for="r in rankRisk" v-on:click="SelectRisk(r.risk);">
 										<div class="rank-icon">
 											<img v-bind:src="r.image">
 										</div>
@@ -76,7 +76,12 @@
 									<div class="rank-title">
 										解法喜好
 									</div>
-									<div class="rank-row" v-for="(s,idx) in rankSolution">
+									<div class="degree-container">
+										<div class="half-w" v-for="(s,idx) in rankSolution">
+											<div class="graph-title">{{s.name}}</div>
+											<svg v-bind:id="'degGraph'+idx"></svg>
+											<div class="center" v-bind:id="'degInfo'+idx">單位:人</div>
+										</div>
 									</div>
 								</div>
 								<div class="remark center">*加權後樣本數: {{wTotal}} 人</div>
