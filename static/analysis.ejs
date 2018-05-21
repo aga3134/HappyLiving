@@ -76,6 +76,11 @@
 									<div class="rank-title">
 										解法喜好
 									</div>
+									<div class="full-w">
+										<div class="graph-title">平均值排名</div>
+										<svg id="avgRankGraph"></svg>
+										<div class="center" id="avgRankInfo">單位:人</div>
+									</div>
 									<div class="degree-container">
 										<div class="half-w" v-for="(s,idx) in rankSolution">
 											<div class="graph-title">{{s.name}}</div>
@@ -90,19 +95,20 @@
 					</div>
 				</div>
 
-				<div v-show="by === 'need' ">
+				<div v-show="by === 'need'" v-on:click="SetMinimize(true);">
 					<div class="graph-container">
-						<info-graph ref="genderGraph"></info-graph><!--
-					 --><info-graph ref="countyGraph"></info-graph><!--
-					 --><info-graph ref="ageGraph"></info-graph><!--
-					 --><info-graph ref="livingGraph"></info-graph><!--
-					 --><info-graph ref="langGraph"></info-graph><!--
-					 --><info-graph ref="livewithGraph"></info-graph>
-
+						<div class="rank-table">
+							<div class="rank-title">填答者加權後分佈</div>
+							<info-graph ref="genderGraph" value="wNum"></info-graph><!--
+						 --><info-graph ref="countyGraph" value="wNum"></info-graph><!--
+						 --><info-graph ref="ageGraph" value="wNum"></info-graph><!--
+						 --><info-graph ref="livingGraph" value="wNum"></info-graph>
+						</div>
+						<div class="padding-bottom">&nbsp;</div>
 					</div>
 				</div>
 
-				<div class="control-bar">
+				<div class="control-bar" v-bind:class="{minimize: isMinimize}" v-on:click="SetMinimize(false);">
 					<div class="option-container">
 						<div class="label">分類</div>
 						<select v-model="by">
@@ -155,9 +161,21 @@
 
 							<div v-show="curRisk !== '全部' ">
 								<div class="label">解法</div>
-								<select v-model="curSolution" v-on:change="UpdateGraph();">
+								<select v-model="curSolution" v-on:change="UpdateSolutionOption();">
 									<option value="全部">全部</option>
 									<option v-for="(s,idx) in riskOption" v-bind:value="idx">{{s.name}}</option>
+								</select>
+							</div>
+
+							<div v-show="curSolution !== '全部' ">
+								<div class="label">喜好程度</div>
+								<select v-model="curDeg" v-on:change="UpdateGraph();">
+									<option value="全部">全部</option>
+									<option value="1">非常不喜歡</option>
+									<option value="2">不喜歡</option>
+									<option value="3">普通</option>
+									<option value="4">喜歡</option>
+									<option value="5">非常喜歡</option>
 								</select>
 							</div>
 						</span>
@@ -170,6 +188,7 @@
 		<script src="/static/mapTW.js?v=<%=version%>"></script>
 		<script src="/static/svgGraph.js?v=<%=version%>"></script>
 		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script src="/static/infoGraph.js?v=<%=version%>"></script>
 		<script src="/static/analysis.js?v=<%=version%>"></script>
 	</body>
 </html>

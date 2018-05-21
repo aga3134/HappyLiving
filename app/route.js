@@ -46,7 +46,6 @@ module.exports = function(app){
 		var maxAge = req.query.maxAge;
 		var county = req.query.county;
 		var living = req.query.living;
-		var summary = req.query.summary;
 
 		var query = {};
 		if(gender) query.gender = gender;
@@ -54,28 +53,9 @@ module.exports = function(app){
 		if(county) query.county = county;
 		if(living) query.living = living;
 
-		if(summary == 1){
-			var groupArr = ['gender','age','county','living'];
-			var attrArr = ['gender','age','county','living','weight',
-				[DB.sequelize.fn('sum', DB.sequelize.col('num')),'num'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Mandarin')),'lang_Mandarin'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Taiwanese')),'lang_Taiwanese'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('lang_Hakka')),'lang_Hakka'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_parents')),'liv_w_parents'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_hw')),'liv_w_hw'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_kid')),'liv_w_kid'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_grandk')),'liv_w_grandk'],
-				[DB.sequelize.fn('sum', DB.sequelize.col('liv_w_others')),'liv_w_others']];
-			DB.HLBasicInfo.findAll({where: query, group: groupArr, attributes: attrArr})
-			.then(function(results){
-				res.send(JSON.stringify(results));
-			});
-		}
-		else{
-			DB.HLBasicInfo.findAll({where: query}).then(function(results){
-				res.send(JSON.stringify(results));
-			});
-		}
+		DB.HLBasicInfo.findAll({where: query}).then(function(results){
+			res.send(JSON.stringify(results));
+		});
 	});
 
 	app.get("/need", function(req, res){

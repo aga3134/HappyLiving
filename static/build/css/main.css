@@ -378,17 +378,17 @@ html, body {
     cursor: pointer; }
     .graph-container .panel-bt:hover {
       background-color: #ffaa33; }
+  .graph-container .rank-title {
+    text-align: center;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #cccccc; }
   .graph-container .rank-table {
     width: 800px;
     margin: auto;
     padding-bottom: 20px;
     max-width: 100%; }
-    .graph-container .rank-table .rank-title {
-      text-align: center;
-      font-size: 1.5em;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #cccccc; }
     .graph-container .rank-table .rank-row {
       display: flex;
       justify-content: flex-start;
@@ -413,6 +413,9 @@ html, body {
         width: 80px; }
         .graph-container .rank-table .rank-row .rank-icon img {
           width: 100%; }
+  .graph-container .padding-bottom {
+    width: 100%;
+    padding: 0px 0px 70px 0px; }
 
 .control-bar {
   background-color: rgba(150, 150, 150, 0.9);
@@ -427,6 +430,17 @@ html, body {
   white-space: nowrap;
   display: flex;
   justify-content: flex-start; }
+  .control-bar.minimize {
+    height: 60px; }
+  .control-bar .minimize-bt {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: white; }
+    .control-bar .minimize-bt:hover {
+      color: yellow; }
   .control-bar .option-container {
     padding: 0px 10px; }
   @media only screen and (min-width: 1024px) {

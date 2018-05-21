@@ -1,5 +1,6 @@
 
 Vue.component('info-graph', {
+	props: ["value"],
 	data: function () {
 		return {
 			graphID:"",
@@ -182,6 +183,7 @@ Vue.component('info-graph', {
 			return arr;
 		},
 		DrawGender: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -193,7 +195,7 @@ Vue.component('info-graph', {
 				})
 				.rollup(function(arr){
 					return d3.sum(arr,function(d){
-						return d.num;
+						return d[value];
 					});
 				})
 				.entries(arr);
@@ -216,13 +218,14 @@ Vue.component('info-graph', {
 			};
 			var unit = this.unit;
 			param.infoFn = function(d){
-				var num = g_Util.NumberWithCommas(d.data.values);
+				var num = g_Util.NumberWithCommas(d.data.values.toFixed(0));
 				return d.data.key+" "+num+unit+" ("+d.data.ratio+"%)";
 			};
 			g_SvgGraph.PieChart(param);
 
 		},
 		DrawAge: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -230,7 +233,7 @@ Vue.component('info-graph', {
 				.key(function(d) {return d.age;})
 				.rollup(function(arr){
 					return d3.sum(arr,function(d){
-						return d.num;
+						return d[value];
 					}); 
 				})
 				.entries(arr);
@@ -260,7 +263,7 @@ Vue.component('info-graph', {
 			param.data = ageGroup;
 			param.maxValue = maxV;
 			param.infoFn = function(d){
-				var num = g_Util.NumberWithCommas(d.values);
+				var num = g_Util.NumberWithCommas(d.values.toFixed(0));
 				var str = d.minAge+"~"+d.maxAge+"歲 "+num+"人";
 				str += " ("+d.ratio+"%)";
 				return str;
@@ -268,6 +271,7 @@ Vue.component('info-graph', {
 			g_SvgGraph.Histogram(param);
 		},
 		DrawCounty: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -279,16 +283,19 @@ Vue.component('info-graph', {
 			})
 			.rollup(function(arr){
 				return d3.sum(arr,function(d){
-					return d.num;
+					return d[value].toFixed(0);
 				}); 
 			})
 			.map(arr);
 
 			var total = 0;
+			var maxV = 0;
 			for(v in countyGroup){
 				total += countyGroup[v];
+				if(countyGroup[v] > maxV) maxV = countyGroup[v];
 			}
 			countyGroup["總計"] = total;
+			maxV = Math.pow(2,Math.ceil(Math.log2(maxV)));
 
 			var param = {};
 			param.map = this.map;
@@ -296,7 +303,7 @@ Vue.component('info-graph', {
 			param.type = this.mapOption;
 			param.selector = "#"+this.graphID;
 			param.minBound = 100;
-			param.maxBound = 20000;
+			param.maxBound = maxV;
 			param.minColor = "#FFFFFF";
 			param.maxColor = "#999999";
 			param.textInfo = "#"+this.infoID;
@@ -305,6 +312,7 @@ Vue.component('info-graph', {
 			g_SvgGraph.MapTW(param);
 		},
 		DrawLiving: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -316,7 +324,7 @@ Vue.component('info-graph', {
 				})
 				.rollup(function(arr){
 					return d3.sum(arr,function(d){
-						return d.num;
+						return d[value];
 					}); 
 				})
 				.entries(arr);
@@ -334,12 +342,13 @@ Vue.component('info-graph', {
 			param.data = livingGroup;
 			param.inRadius = 50;
 			param.infoFn = function(d){
-				var num = g_Util.NumberWithCommas(d.data.values);
+				var num = g_Util.NumberWithCommas(d.data.values.toFixed(0));
 				return d.data.key+" "+num+"人 ("+d.data.ratio+"%)";
 			};
 			g_SvgGraph.PieChart(param);
 		},
 		DrawLang: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -351,7 +360,7 @@ Vue.component('info-graph', {
 				langGroup[1].values += arr[i].lang_Mandarin;
 				langGroup[2].values += arr[i].lang_Taiwanese;
 				langGroup[3].values += arr[i].lang_Hakka;
-				langGroup[0].values += arr[i].num - arr[i].lang_Mandarin - arr[i].lang_Taiwanese - arr[i].lang_Hakka;
+				langGroup[0].values += arr[i][value] - arr[i].lang_Mandarin - arr[i].lang_Taiwanese - arr[i].lang_Hakka;
 			}
 
 			var total = d3.sum(langGroup,function(d){return d.values;});
@@ -368,13 +377,14 @@ Vue.component('info-graph', {
 			param.inRadius = 50;
 			var unit = this.unit;
 			param.infoFn = function(d){
-				var num = g_Util.NumberWithCommas(d.data.values);
+				var num = g_Util.NumberWithCommas(d.data.values.toFixed(0));
 				return d.data.key+" "+num+unit+" ("+d.data.ratio+"%)";
 			};
 			g_SvgGraph.PieChart(param);
 
 		},
 		DrawLivewith: function(){
+			var value = this.value;
 			var header = this.header;
 			var arr = this.FilterData();
 
@@ -389,7 +399,7 @@ Vue.component('info-graph', {
 				livewithGroup[2].values += arr[i].liv_w_kid;
 				livewithGroup[3].values += arr[i].liv_w_grandk;
 				livewithGroup[4].values += arr[i].liv_w_others;
-				total += arr[i].num;
+				total += arr[i][value];
 			}
 			
 			var maxV = d3.max(livewithGroup,function(d){return d.values;});
@@ -408,7 +418,7 @@ Vue.component('info-graph', {
 	  		param.unit = "人";
 	  		param.data = livewithGroup;
 	  		param.infoFn = function(d){
-				var num = g_Util.NumberWithCommas(d.values);
+				var num = g_Util.NumberWithCommas(d.values.toFixed(0));
 				var str = d.key+" "+num+"人";
 				str += " ("+d.ratio+"%)";
 				return str;

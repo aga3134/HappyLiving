@@ -96,7 +96,7 @@ var g_APP = new Vue({
     DrawSummery: function(){
       var header = this.header;
 
-      $.get("/basicInfo?summary=1",function(data){
+      $.get("/basicInfo",function(data){
         var json = JSON.parse(data);
 
         this.$refs.genderGraph.input = json;
