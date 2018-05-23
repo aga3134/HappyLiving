@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<title><%=meta.title%></title>
+		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
+
+		<link rel="canonical" href="<%=meta.hostname%>/opendata" />
+		<meta property="og:url" content="<%=meta.hostname%>/opendata" />
+
+		<meta name="description" content="<%=meta.desc%>"/>
+		<meta property="og:description" content="<%=meta.desc%>" />
+		<meta property="og:site_name" content="<%=meta.title%>" />
+		<meta property="og:title" content="<%=meta.title%>" />
+		<meta property="og:image" content="<%=meta.hostname%>/static/Image/banner.png" />
+		<meta property="og:locale" content="zh_TW" />
+		<meta property="og:type" content="website" />
+
+		<meta http-equiv="Content-Language" content="zh-tw" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/static/build/css/main.css?v=<%=version%>">
+
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<div id="opendata" class="happy-living">
+			<topbar></topbar>
+
+			<div class="main-container">
+				<div class="center">
+					<div class="category">開放資料下載</div>
+				</div>
+				<div class="center-p">
+					<ul>
+						<li>
+							<a href="" target="_blank">問卷題目 (WORD 檔)</a><br>
+							<div class="desc">問卷題目設計與對應題目代碼。</div>
+						</li>
+						<li>
+							<a href="" target="_blank">問卷題目 (JSON 檔)</a><br>
+							<div class="desc">問卷題目之樹狀結構 與 性別、年齡、縣市、居住方式之分類項目。</div>
+						</li>
+						<li>
+							<a href="" target="_blank">全齡填答統計 (JSON 檔)</a><br>
+							<div class="desc">
+								將「全齡填答原始資料」 依性別、年齡、縣市、居住方式 分類，並依問卷樹狀結構計算各分類之加總人數。<span class="bold">資料中之人數欄位(num)皆為未加權人數，要得到加權後人數請將人數欄位(num)乘上該筆資料之權重欄位(weight)。</span>
+							</div>
+						</li>
+						<li>
+							<a href="" target="_blank">全齡填答原始資料 (CSV 檔)</a><br>
+							<div class="desc">
+								20歲以上問卷填答原始資料，有效樣本數68,323人。<span class="bold">本原始資料未經加權，若要反應全台母體人口結構，請將人數依下列權重資料加權計算。</span>
+							</div>
+						</li>
+						<li>
+							<a href="" target="_blank">全齡權重資料 (EXCEL 檔)</a><br>
+							<div class="desc">
+								為反應全台母體的人口結構，此權重資料依縣市、性別、20歲以上年齡分類，計算20歲以上問卷填答人數對應到全台20歲以上人口比例之加權數值。
+							</div>
+						</li>
+						<li>
+							<a href="" target="_blank">50+長者權重資料 (EXCEL 檔)</a><br>
+							<div class="desc">
+								為反應全台母體的人口結構，此權重資料依縣市、性別、50歲以上年齡分類，計算50歲以上問卷填答人數對應到全台50歲以上人口比例之加權數值。
+							</div>
+						</li>
+						<li>
+							<a href="" target="_blank">50+長者需求分析簡報檔 (PPT 檔)</a><br>
+							<div class="desc">
+								針對50歲以上長者填答資料分析之簡報檔。
+							</div>
+						</li>
+						<li>
+							<a href="" target="_blank">網站開放原始碼 (GitHub)</a><br>
+							<div class="desc">
+								網站原始碼與資料處理程式。
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script>
+			var app = new Vue({
+				el: "#opendata",
+				data: {}
+			});
+		</script>
+	</body>
+</html>

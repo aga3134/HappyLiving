@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
 	<head>
-		<title>樂樂活大解析</title>
+		<title><%=meta.title%></title>
 		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
 
-		<link rel="canonical" href="" />
-		<meta property="og:url" content="" />
+		<link rel="canonical" href="<%=meta.hostname%>/" />
+		<meta property="og:url" content="<%=meta.hostname%>/" />
 
-		<meta name="description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?"/>
-		<meta property="og:description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?" />
-		<meta property="og:site_name" content="樂樂活大解析" />
+		<meta name="description" content="<%=meta.desc%>"/>
+		<meta property="og:description" content="<%=meta.desc%>" />
+		<meta property="og:site_name" content="<%=meta.title%>" />
+		<meta property="og:title" content="<%=meta.title%>" />
+		<meta property="og:image" content="<%=meta.hostname%>/static/Image/banner.png" />
 		<meta property="og:locale" content="zh_TW" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="樂樂活大解析" />
-		<meta property="og:image" content="" />
 
 		<meta http-equiv="Content-Language" content="zh-tw" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -44,7 +44,7 @@
 			<topbar></topbar>
 			
 			<div class="main-container">
-				<div class="center-p"><a href="http://happyliving.stansfoundation.org/index.html" target="_blank">樂樂活大家講</a>是<a href="http://www.lyccc.org.tw/" target="_blank">智榮基金會|龍吟研論</a> 於106/8/17 ~ 10/18 針對未來長者需求展開的線上問卷調查，期間共計有79,441人成功填答，有效樣本數68,323筆*。本站將這些資料開放釋出，並提供視覺化工具協助大家解讀資料。高齡社會中，哪些需求是長者們真正在乎的，哪些解決問題的方式是長者們真正想要的，讓我們一起深入探索吧！
+				<div class="center-p indent"><a href="http://happyliving.stansfoundation.org/" target="_blank">樂樂活大家講</a> 是<a href="http://ccc.stansfoundation.org/?page_id=14" target="_blank">智榮基金會龍吟研論</a> 於2017/08/17 ~ 10/18 針對未來長者需求展開的線上問卷調查，期間共計有 79,441 人成功填答，有效樣本數為 68,323 筆*。智榮基金會秉持「取之於社會、用之於社會」信念，願將此次調查成果全數回饋給社會大眾，希望長者心聲能讓更多人聽見，並友善提供視覺化工具協助大家解讀資料。高齡社會中，哪些需求是長者們真正在乎的？哪些解決問題的方式是長者們真正想要的？讓我們一同深入探索吧！
 				</div>
 				
 				<div class="remark center">
@@ -57,7 +57,9 @@
 					<a href="#analysis"><div class="scroll-bt">填答分析</div></a>
 				</div>
 				<a name="quest"></a>
-				<div class="category">問卷題目</div>
+				<div class="center">
+					<div class="category">問卷題目</div>
+				</div>
 				
 				<div class="quest-need">{{ quest.q[0] }}</div>
 				<div class="ans-container" v-for="(n,nIndex) in quest.need">
@@ -85,7 +87,10 @@
 				</div>
 
 				<a name="user-info"></a>
-				<div class="category">填答者分佈</div>
+				<div class="center">
+					<div class="category">填答者分佈</div>
+				</div>
+
 				<div class="graph-container">
 					<info-graph ref="genderGraph" value="num"></info-graph><!--
 				 --><info-graph ref="countyGraph" value="num"></info-graph><!--
@@ -97,8 +102,11 @@
 				</div>
 
 				<a name="analysis"></a>
-				<div class="category">填答分析</div>
-				<div class="center-p">
+				<div class="center">
+					<div class="category">填答分析</div>
+				</div>
+				
+				<div class="center-p indent">
 					為反應全台母體的人口結構，本研究分析依據主計處2017.09發布人口統計資料，以各縣市區域的性別與年齡進行事後分層加權值計算。<span class="warning">填答分析之數據皆為加權後的結果</span>。
 				</div>
 				<div class="analysis-option">

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<title><%=meta.title%></title>
+		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
+
+		<link rel="canonical" href="<%=meta.hostname%>/method" />
+		<meta property="og:url" content="<%=meta.hostname%>/method" />
+
+		<meta name="description" content="<%=meta.desc%>"/>
+		<meta property="og:description" content="<%=meta.desc%>" />
+		<meta property="og:site_name" content="<%=meta.title%>" />
+		<meta property="og:title" content="<%=meta.title%>" />
+		<meta property="og:image" content="<%=meta.hostname%>/static/Image/banner.png" />
+		<meta property="og:locale" content="zh_TW" />
+		<meta property="og:type" content="website" />
+
+		<meta http-equiv="Content-Language" content="zh-tw" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/static/build/css/main.css?v=<%=version%>">
+
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<div id="method" class="happy-living">
+			<topbar></topbar>
+
+			<div class="main-container">
+				<div class="center">
+					<div class="category">量質化雙軌研究設計</div>
+				</div>
+				<div class="table-container">
+					<table>
+						<tr>
+							<th></th>
+							<th>量化線上調查</th>
+							<th>質化團體討論</th>
+						</tr>
+						<tr>
+							<td>研究方法</td>
+							<td>自主填答式<br>
+							語音圖片輔助線上問卷
+							</td>
+							<td>半結構式<br>
+							集體訪談法</td>
+						</tr>
+						<tr>
+							<td>抽樣方法</td>
+							<td>網路社群滾雪球抽樣</td>
+							<td>社區據點便利抽樣</td>
+						</tr>
+						<tr>
+							<td>調查期程</td>
+							<td colspan="2">2017.8.17 ~ 2017.10.19</td>
+						</tr>
+						<tr>
+							<td>樣本數</td>
+							<td>成功填答數79,441<br>
+							有效樣本數68,323*
+							</td>
+							<td>30場次，每場次20-40人<br>
+							共計1,024位</td>
+						</tr>
+						<tr>
+							<td>涵蓋地區</td>
+							<td>台澎金馬</td>
+							<td>台灣各縣市與澎湖</td>
+						</tr>
+						<tr>
+							<td>涵蓋年齡</td>
+							<td>20-106歲</td>
+							<td>50-106歲</td>
+						</tr>
+					</table>
+					<div class="remark">*備註：有效樣本數為剔除填答總秒數60秒以下及7200秒以上之資料。</div>
+				</div>
+
+				<div class="center">
+					<div class="category">從規模化質性訪談萃取妨礙活躍老化的日常困擾與解方</div>
+				</div>
+				<div class="center">
+					<div class="center-p">
+						<div class="sub-title">2013 ~ 2016 質性訪談</div>
+						<img class="interview-img" src="/static/Image/method1.png">
+					</div><!--
+					--><div class="center-p">
+						<div class="sub-title">2017 全台大規模線上調查+30場全台巡迴</div>
+						<ul class="quest-block">
+							<li>
+								<div class="quest1">第1題：關鍵需求10選2</div>
+								<div class="quest2">請選出2項您未來生活中最關心的事？</div>
+								<div class="quest3">問題設計：10選項拆分成3個答題步驟，進行比較選擇。</div>
+							</li>
+							<li>
+								<div class="quest1">第2題：需求項下的最大困擾6選2</div>
+								<div class="quest2">在未來生活中，您最擔心哪2個麻煩？</div>
+								<div class="quest3">問題設計：依據第1題的選擇結果，各別彈跳該問項下的困擾選項，進行比較選擇。</div>
+							</li>
+							<li>
+								<div class="quest1">第3題：困擾項下的可能解方偏好</div>
+								<div class="quest2">請問這個解決方式，您喜歡嗎?</div>
+								<div class="quest3">問題設計：依據第2題選擇結果，各別彈跳該困擾項下的解法，逐一進行5分量表評分。</div>
+							</li>
+							<li>
+								<div class="quest1">基本資料題項</div>
+								<div class="quest3">性別、年齡、居住地區、居住型態</div>
+							</li>
+						</ul>
+						<img class="interview-img" src="/static/Image/method2.png">
+					</div>
+				</div>
+
+				<div class="center">
+					<div class="category">專為長者自主填答設計的線上問卷</div>
+				</div>
+				<div class="center-p">
+					<div class="center">
+						<p><span class="decoration">&#9679;</span> 國台客三語音朗讀</p>
+						<p><span class="decoration">&#9679;</span> 圖片輔助文字理解</p>
+						<p><span class="decoration">&#9679;</span> 極度簡化手勢操作</p>
+						<img class="interview-img" src="/static/Image/method3.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script>
+			var app = new Vue({
+				el: "#method",
+				data: {}
+			});
+		</script>
+	</body>
+</html>

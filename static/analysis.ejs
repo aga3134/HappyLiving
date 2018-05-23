@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
 	<head>
-		<title>樂樂活大解析</title>
+		<title><%=meta.title%></title>
 		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
 
-		<link rel="canonical" href="" />
-		<meta property="og:url" content="" />
+		<link rel="canonical" href="<%=meta.hostname%>/analysis" />
+		<meta property="og:url" content="<%=meta.hostname%>/analysis" />
 
-		<meta name="description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?"/>
-		<meta property="og:description" content="台灣史上規模最大的長者調查活動，分析結果大公開。老後生活最在意的麻煩事，你/妳了解多少?" />
-		<meta property="og:site_name" content="樂樂活大解析" />
+		<meta name="description" content="<%=meta.desc%>"/>
+		<meta property="og:description" content="<%=meta.desc%>" />
+		<meta property="og:site_name" content="<%=meta.title%>" />
+		<meta property="og:title" content="<%=meta.title%>" />
+		<meta property="og:image" content="<%=meta.hostname%>/static/Image/banner.png" />
 		<meta property="og:locale" content="zh_TW" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="樂樂活大解析" />
-		<meta property="og:image" content="" />
 
 		<meta http-equiv="Content-Language" content="zh-tw" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -54,7 +54,7 @@
 								<div class="rank-table">
 									<div class="back-bt" v-on:click="BackToPrev();"><< 返回</div>
 									<div class="rank-title">
-										麻煩排名
+										困擾排名
 									</div>
 									<div class="rank-row" v-for="r in rankRisk" v-on:click="SelectRisk(r.risk);">
 										<div class="rank-icon">
@@ -74,7 +74,7 @@
 								<div class="rank-table">
 									<div class="back-bt" v-on:click="BackToPrev();"><< 返回</div>
 									<div class="rank-title">
-										解法喜好
+										解方喜好
 									</div>
 									<div class="full-w">
 										<div class="graph-title">平均值排名</div>
@@ -111,7 +111,7 @@
 				<div class="control-bar" v-bind:class="{minimize: isMinimize}" v-on:click="SetMinimize(false);">
 					<div class="option-container">
 						<div class="label">分類</div>
-						<select v-model="by">
+						<select v-model="by" v-on:change="UpdateGraph();">
 							<option value="info">基本</option>
 							<option value="need">需求</option>
 						</select>
@@ -152,7 +152,7 @@
 							</select>
 
 							<div v-show="curNeed !== '全部' ">
-								<div class="label">麻煩</div>
+								<div class="label">困擾</div>
 								<select v-model="curRisk" v-on:change="UpdateRiskOption();">
 									<option value="全部">全部</option>
 									<option v-for="(r,idx) in needOption" v-bind:value="idx">{{r.name}}</option>
@@ -160,7 +160,7 @@
 							</div>
 
 							<div v-show="curRisk !== '全部' ">
-								<div class="label">解法</div>
+								<div class="label">解方</div>
 								<select v-model="curSolution" v-on:change="UpdateSolutionOption();">
 									<option value="全部">全部</option>
 									<option v-for="(s,idx) in riskOption" v-bind:value="idx">{{s.name}}</option>

@@ -302,7 +302,7 @@ Vue.component('info-graph', {
 			param.year = 2017;
 			param.type = this.mapOption;
 			param.selector = "#"+this.graphID;
-			param.minBound = 100;
+			param.minBound = maxV>100?10:1;
 			param.maxBound = maxV;
 			param.minColor = "#FFFFFF";
 			param.maxColor = "#999999";

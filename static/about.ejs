@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+	<head>
+		<title><%=meta.title%></title>
+		<link rel="icon" href="/static/Image/icon.png?v=<%=version%>">
+
+		<link rel="canonical" href="<%=meta.hostname%>/about" />
+		<meta property="og:url" content="<%=meta.hostname%>/about" />
+
+		<meta name="description" content="<%=meta.desc%>"/>
+		<meta property="og:description" content="<%=meta.desc%>" />
+		<meta property="og:site_name" content="<%=meta.title%>" />
+		<meta property="og:title" content="<%=meta.title%>" />
+		<meta property="og:image" content="<%=meta.hostname%>/static/Image/banner.png" />
+		<meta property="og:locale" content="zh_TW" />
+		<meta property="og:type" content="website" />
+
+		<meta http-equiv="Content-Language" content="zh-tw" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/static/build/css/main.css?v=<%=version%>">
+
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<div id="about" class="happy-living">
+			<topbar></topbar>
+
+			<div class="main-container">
+				<div class="center">
+					<div class="category">「樂樂活大家講」背景介紹</div>
+				</div>
+				<p class="center-p indent">
+					台灣進入超高齡化國家是現在進行式，生活在這塊土地上的人們正逐漸老去…但是社會的軟硬體服務，以及迎接老的態度，已經準備好與台灣長輩們共建幸福老後生活嗎？
+				</p>
+				<p class="center-p indent">
+					<a href="http://ccc.stansfoundation.org/?page_id=14" target="_blank">智榮基金會龍吟研論</a> 自2013年起，連續4年深度調研台灣中高齡族群的生活需求趨勢。2017年以民間機構的身份，自行發起行動，攜手產官學研各界展開「樂樂活大家講—未來長者生活需求大調查」，以一份圖文並陳、國台客三語報讀的線上問卷，由下而上彙集民眾未來老後生活需求心聲。
+				</p>
+
+				<div class="center">
+					<div class="category">「樂樂活大家講」合作夥伴</div>
+				</div>
+				<div class="center-p indent">茲感謝產官學研全力支持，包括宏碁電腦、國發會、桂冠食品、信義房屋、中華電信、康揚輔具、工業局、工研院、潤泰集團潤福中高齡住宅、鈞生漢方養生堂、PChome、純青基金會、新光保全、富邦人壽、104銀髮銀行、經濟部智慧商業推動辦公室等。</div>
+				<div class="center-p">
+					<div class="logo-container">
+						<img class="sponsor" src="/static/Image/logo/sponsor-01.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-02.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-03.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-04.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-05.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-06.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-07.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-08.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-09.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-10.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-11.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-12.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-13.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-14.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-15.png">
+						<img class="sponsor" src="/static/Image/logo/sponsor-16.png">
+					</div>
+				</div>
+
+				<div class="center">
+					<div class="category">「樂樂活大解析」網頁建置者</div>
+				</div>
+				<div class="center">
+					<a href="https://agawork.tw" target="_blank"><img class="dev" src="/static/Image/logo/agawork.png"></a>
+				</div>
+			</div>
+		</div>
+		<script src="/static/topbar.js?v=<%=version%>"></script>
+		<script>
+			var app = new Vue({
+				el: "#about",
+				data: {}
+			});
+		</script>
+	</body>
+</html>

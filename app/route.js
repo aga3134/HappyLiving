@@ -1,6 +1,7 @@
 var DB = require("./db");
 var fs = require("fs");
 var version = "1.0.1";
+var Config = require('../config');
 
 module.exports = function(app){
 	var header = fs.readFileSync("./static/header.json");
@@ -8,24 +9,29 @@ module.exports = function(app){
 
 	DB.Init();
 
+	var meta = {};
+	meta.title = "樂樂活大解析";
+	meta.hostname = Config.hostname;
+	meta.desc = "哪些需求是長者們真正在乎的？哪些解決問題的方式是長者們真正想要的？讓我們一同深入探索吧！「樂樂活大家講」是智榮基金會在2017年針對未來長者需求展開的線上問卷調查，此次調查成果全數回饋給社會大眾，希望長者心聲能讓更多人聽見，並友善提供視覺化工具協助大家解讀資料。";
+
 	app.get("/", function(req, res){
-		res.render("static/index.ejs", {version: version});
+		res.render("static/index.ejs", {version: version,meta:meta});
 	});
 
 	app.get("/method", function(req, res){
-		res.render("static/method.ejs", {version: version});
+		res.render("static/method.ejs", {version: version,meta:meta});
 	});
 
 	app.get("/opendata", function(req, res){
-		res.render("static/opendata.ejs", {version: version});
+		res.render("static/opendata.ejs", {version: version,meta:meta});
 	});
 
 	app.get("/about", function(req, res){
-		res.render("static/about.ejs", {version: version});
+		res.render("static/about.ejs", {version: version,meta:meta});
 	});
 
 	app.get("/analysis", function(req, res){
-		res.render("static/analysis.ejs", {version: version});
+		res.render("static/analysis.ejs", {version: version,meta:meta});
 	});
 
 	function GetAgeArr(minAge,maxAge){

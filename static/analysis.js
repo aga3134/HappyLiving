@@ -70,10 +70,13 @@ var g_Analysis = new Vue({
     UpdateGraph: function(){
       //console.log(this.header);
       //console.log(this.basicInfo);
-      switch(this.by){
-        case "info": this.UpdateRankGraph(); break;
-        case "need": this.UpdateDistGraph(); break;
-      }
+      setTimeout(function(){
+        switch(this.by){
+          case "info": this.UpdateRankGraph(); break;
+          case "need": this.UpdateDistGraph(); break;
+        }
+      }.bind(this),10);
+      
     },
     ComputeTotalNum: function(){
       var minAge = this.minAge>20?this.minAge:20;
@@ -286,7 +289,7 @@ var g_Analysis = new Vue({
         param.data = s[key];
         param.infoFn = function(d){
           var num = g_Util.NumberWithCommas(d.value.toFixed(2));
-          var str = this.GetDegName(d.minX);
+          var str = g_Analysis.GetDegName(d.minX);
           return str+": "+num+"人";
         };
         g_SvgGraph.Histogram(param);

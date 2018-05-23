@@ -31,7 +31,7 @@ $pad-media: 640px;
 //===================General======================
 html, body { 
   height: 100%; margin: 0; padding: 0; 
-  overflow: auto;
+  overflow: visible;
 }
 
 * {
@@ -54,9 +54,12 @@ html, body {
 	color: red;
 }
 
+.bold{
+	font-weight: bold;
+}
+
 //===========================happy-living===============
 .happy-living{
-	
 	.topbar{
 		position: fixed;
 		top: 0px;
@@ -169,6 +172,9 @@ html, body {
 			}
 		}
 
+		.indent{
+			text-indent: 2em;
+		}
 		.center-p{
 			width: 800px;
 			max-width: 100%;
@@ -176,8 +182,21 @@ html, body {
 			padding: 10px;
 			font-size: 1.25em;
 			line-height: 1.5em;
-			text-indent: 2em;
+			ul{
+				li{
+					font-weight: bold;
+					padding-left: 10px;
+				}
+			}
+			
+			.desc{
+				font-weight: normal;
+				color: #333333;
+				margin-bottom: 20px;
+				font-size: 0.9em;
+			}
 		}
+
 		a{
 			text-decoration: none;
 			color: #fb8c00;
@@ -186,9 +205,11 @@ html, body {
 			}
 		}
 		.category{
+			display: inline-block;
+			min-width: 200px;
+			max-width: 100%;
 			margin: 20px auto;
-			width: 250px;
-			padding: 20px 0px 10px 0px;
+			padding: 20px 10px 10px 10px;
 			text-align: center;
 			font-size: 1.5em;
 			font-weight: bold;
@@ -302,7 +323,95 @@ html, body {
 			margin: 30px auto;
 			font-size: 0.9em;
 		}
-		
+		.logo-container{
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			.sponsor{
+				margin: 10px;
+				height: 100px;
+			}
+		}
+		.dev{
+			cursor: pointer;
+			width: 200px;
+		}
+
+		.table-container{
+			margin: auto;
+			width: 800px;
+			max-width: 100%;
+			overflow: auto;
+			table{
+		        border-collapse: collapse;
+		        vertical-align: top;
+		        width: 100%;
+		        font-size: 1.2em;
+		        text-align: center;
+		        color: #333333;
+		        caption{
+		            padding: 5px;
+		        }
+		        th{
+		            padding: 10px;
+		            background-color: #e97a15;
+		            border: 1px solid #ffffff;
+		            color: #ffffff;
+		        }
+		        tr:nth-child(even) {
+		            background-color: #f6d6cc;
+		        }
+		        tr:nth-child(odd) {
+		            background-color: #faebe7;
+		        }
+		        td{
+		        	padding: 10px;
+		        	border: 1px solid #ffffff;
+		        }
+		    }
+		}
+
+		.sub-title{
+			font-size: 1.2em;
+			color: #000000;
+			background-color: #53b7af;
+			padding: 10px;
+			font-weight: bold;
+		}
+		.interview-img{
+			vertical-align: middle;
+			margin: 30px 10px;
+			width: 350px;
+			max-width: calc(100% - 20px);
+			object-fit: cover;
+		}
+		.quest-block{
+			vertical-align: middle;
+			display: inline-block;
+			width: 400px;
+			max-width: 100%;
+			padding: 10px;
+			margin: 0px;
+			text-align: left;
+			.quest1{
+				color: #e97a15;
+				font-weight: bold;
+			}
+			.quest2{
+				color: #000000;
+				font-weight: bold;
+			}
+			.quest3{
+				color: #000000;
+				font-weight: normal;
+			}
+		}
+		.decoration{
+			font-size: 0.6em;
+			vertical-align: middle;
+			padding-right: 20px;
+		}
 	}
 }
 

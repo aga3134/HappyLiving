@@ -6,7 +6,8 @@ Vue.component('topbar', {
 			menuImg: "/static/Image/menu-button.png",
 			version: "1.0.0",
 			isOpen: false,
-    		itemList: [{name:"研究方法",link:"/method"},
+    		itemList: [{name:"資料分析",link:"/analysis"},
+    					{name:"研究方法",link:"/method"},
     					{name:"開放資料",link:"/opendata"},
     					{name:"關於本站",link:"/about"}]
 		};

@@ -6,5 +6,6 @@
     	"username": "YourUserName",
     	"password": "YourPassword"
 	},
+	"hostname": "YourHostName",
 	"serverPort": 8001
 }

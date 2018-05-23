@@ -18,7 +18,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: auto; }
+  overflow: visible; }
 
 * {
   box-sizing: border-box;
@@ -35,6 +35,9 @@ html, body {
 
 .warning {
   color: red; }
+
+.bold {
+  font-weight: bold; }
 
 .happy-living .topbar {
   position: fixed;
@@ -134,23 +137,34 @@ html, body {
       cursor: pointer; }
       .happy-living .main-container .scroll-option .scroll-bt:hover {
         background-color: #ffaa33; }
+  .happy-living .main-container .indent {
+    text-indent: 2em; }
   .happy-living .main-container .center-p {
     width: 800px;
     max-width: 100%;
     margin: auto;
     padding: 10px;
     font-size: 1.25em;
-    line-height: 1.5em;
-    text-indent: 2em; }
+    line-height: 1.5em; }
+    .happy-living .main-container .center-p ul li {
+      font-weight: bold;
+      padding-left: 10px; }
+    .happy-living .main-container .center-p .desc {
+      font-weight: normal;
+      color: #333333;
+      margin-bottom: 20px;
+      font-size: 0.9em; }
   .happy-living .main-container a {
     text-decoration: none;
     color: #fb8c00; }
     .happy-living .main-container a:hover {
       color: #ff3300; }
   .happy-living .main-container .category {
+    display: inline-block;
+    min-width: 200px;
+    max-width: 100%;
     margin: 20px auto;
-    width: 250px;
-    padding: 20px 0px 10px 0px;
+    padding: 20px 10px 10px 10px;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
@@ -244,6 +258,76 @@ html, body {
     max-width: 100%;
     margin: 30px auto;
     font-size: 0.9em; }
+  .happy-living .main-container .logo-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; }
+    .happy-living .main-container .logo-container .sponsor {
+      margin: 10px;
+      height: 100px; }
+  .happy-living .main-container .dev {
+    cursor: pointer;
+    width: 200px; }
+  .happy-living .main-container .table-container {
+    margin: auto;
+    width: 800px;
+    max-width: 100%;
+    overflow: auto; }
+    .happy-living .main-container .table-container table {
+      border-collapse: collapse;
+      vertical-align: top;
+      width: 100%;
+      font-size: 1.2em;
+      text-align: center;
+      color: #333333; }
+      .happy-living .main-container .table-container table caption {
+        padding: 5px; }
+      .happy-living .main-container .table-container table th {
+        padding: 10px;
+        background-color: #e97a15;
+        border: 1px solid #ffffff;
+        color: #ffffff; }
+      .happy-living .main-container .table-container table tr:nth-child(even) {
+        background-color: #f6d6cc; }
+      .happy-living .main-container .table-container table tr:nth-child(odd) {
+        background-color: #faebe7; }
+      .happy-living .main-container .table-container table td {
+        padding: 10px;
+        border: 1px solid #ffffff; }
+  .happy-living .main-container .sub-title {
+    font-size: 1.2em;
+    color: #000000;
+    background-color: #53b7af;
+    padding: 10px;
+    font-weight: bold; }
+  .happy-living .main-container .interview-img {
+    vertical-align: middle;
+    margin: 30px 10px;
+    width: 350px;
+    max-width: calc(100% - 20px);
+    object-fit: cover; }
+  .happy-living .main-container .quest-block {
+    vertical-align: middle;
+    display: inline-block;
+    width: 400px;
+    max-width: 100%;
+    padding: 10px;
+    margin: 0px;
+    text-align: left; }
+    .happy-living .main-container .quest-block .quest1 {
+      color: #e97a15;
+      font-weight: bold; }
+    .happy-living .main-container .quest-block .quest2 {
+      color: #000000;
+      font-weight: bold; }
+    .happy-living .main-container .quest-block .quest3 {
+      color: #000000;
+      font-weight: normal; }
+  .happy-living .main-container .decoration {
+    font-size: 0.6em;
+    vertical-align: middle;
+    padding-right: 20px; }
 
 .analysis-container {
   width: 100%;
