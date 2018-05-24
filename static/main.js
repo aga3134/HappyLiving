@@ -132,14 +132,14 @@ window.addEventListener('load', function() {
   $('a').click(function(){
     var href = $.attr(this, 'href');
     if(href){
-      var scroll = $("body").scrollTop();
+      var scroll = $("html").scrollTop();
       var index= href.indexOf("#");
       var anchor = $('[name="' + href.substr(index+1) + '"]');
       if(anchor.length == 0){
         anchor = $('a[id="' + href.substr(index+1) + '"]');
       }
       if(anchor.length > 0){
-          $('body').animate({
+          $('html').animate({
               scrollTop: anchor.offset().top+scroll-80
           }, 500);
           return false;
