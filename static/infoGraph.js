@@ -413,8 +413,8 @@ Vue.component('info-graph', {
 	  		param.key = "key";
 	  		param.value = "values";
 	  		param.maxValue = maxV;
-	  		param.minColor = "#99FF99";
-	  		param.maxColor = "#669966";
+	  		param.minColor = "#BBBB99";
+	  		param.maxColor = "#FFFF99";
 	  		param.unit = "人";
 	  		param.data = livewithGroup;
 	  		param.infoFn = function(d){

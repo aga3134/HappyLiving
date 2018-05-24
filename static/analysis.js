@@ -252,8 +252,9 @@ var g_Analysis = new Vue({
       param.key = "key";
       param.value = "value";
       param.maxValue = 5;
-      param.minColor = "#99FF99";
-      param.maxColor = "#669966";
+      var color = "#AACCFF";
+      param.minColor = d3.rgb(color).darker(3);
+      param.maxColor = color;
       param.unit = "平均值";
       param.data = avgRank;
       param.infoFn = function(d){
@@ -270,6 +271,7 @@ var g_Analysis = new Vue({
         if(v > maxV) maxV = v;
       }
 
+      var colorArr = g_Util.ColorCategory(10);
       for(var i=0;i<this.rankSolution.length;i++){
         var s = this.rankSolution[i];
         //console.log(s[key]);
@@ -281,8 +283,9 @@ var g_Analysis = new Vue({
         param.keyXMax = "maxX";
         param.keyY = "value";
         param.maxValue = maxV;
-        param.minColor = "#FF9999";
-        param.maxColor = "#996666";
+        var c = colorArr(i);
+        param.minColor = d3.rgb(c).darker(1);
+        param.maxColor = c;
         param.unitY = "人";
         param.unitX = "喜好程度";
         param.textInfo = "#degInfo"+i;
