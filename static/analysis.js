@@ -156,11 +156,12 @@ var g_Analysis = new Vue({
         
         var maxV = d3.max(json,function(d){return d[value];});
         var total = this.ComputeTotalNum();
-        var scaleW = total[value]/maxV;
+        //var scaleW = total[value]/maxV;
         this.wTotal = total["wNum"].toFixed(2);
 
         switch(this.levelSelect){
           case 0:
+            var scaleW = 2;
             for(var i=0;i<json.length;i++){
               var nID = json[i].need;
               json[i].name = this.header.need[nID].name;
@@ -177,6 +178,7 @@ var g_Analysis = new Vue({
 
             break;
           case 1:
+            var scaleW = 4;
             for(var i=0;i<json.length;i++){
               var nID = json[i].need;
               var rID = json[i].risk;
@@ -252,8 +254,8 @@ var g_Analysis = new Vue({
       param.key = "key";
       param.value = "value";
       param.maxValue = 5;
-      var color = "#AACCFF";
-      param.minColor = d3.rgb(color).darker(3);
+      var color = "#73c0f4";
+      param.minColor = d3.rgb(color).brighter(3);
       param.maxColor = color;
       param.unit = "平均值";
       param.data = avgRank;
@@ -275,6 +277,7 @@ var g_Analysis = new Vue({
       for(var i=0;i<this.rankSolution.length;i++){
         var s = this.rankSolution[i];
         //console.log(s[key]);
+        var sum = d3.sum(s[key],function(d){return d.value;});
         var param = {};
         param.selector = "#degGraph"+i;
         param.minX = 0;
@@ -293,7 +296,8 @@ var g_Analysis = new Vue({
         param.infoFn = function(d){
           var num = g_Util.NumberWithCommas(d.value.toFixed(2));
           var str = g_Analysis.GetDegName(d.minX);
-          return str+": "+num+"人";
+          var ratio = (100*(d.value/sum)).toFixed(2);
+          return str+": "+num+"人"+"("+ratio+"%)";
         };
         g_SvgGraph.Histogram(param);
       }
@@ -334,6 +338,26 @@ var g_Analysis = new Vue({
         app.$refs.livingGraph.input = data;
         app.$refs.livingGraph.type = "living";
         app.$refs.livingGraph.UpdateGraph();
+
+        app.$refs.genderRatio.input = data;
+        app.$refs.genderRatio.total = app.basicInfo;
+        app.$refs.genderRatio.type = "genderRatio";
+        app.$refs.genderRatio.UpdateGraph();
+
+        app.$refs.countyRatio.input = data;
+        app.$refs.countyRatio.total = app.basicInfo;
+        app.$refs.countyRatio.type = "countyRatio";
+        app.$refs.countyRatio.UpdateGraph();
+
+        app.$refs.ageRatio.input = data;
+        app.$refs.ageRatio.total = app.basicInfo;
+        app.$refs.ageRatio.type = "ageRatio";
+        app.$refs.ageRatio.UpdateGraph();
+
+        app.$refs.livingRatio.input = data;
+        app.$refs.livingRatio.total = app.basicInfo;
+        app.$refs.livingRatio.type = "livingRatio";
+        app.$refs.livingRatio.UpdateGraph();
       }
 
       var json = [];

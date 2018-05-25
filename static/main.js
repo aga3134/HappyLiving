@@ -54,17 +54,17 @@ var g_APP = new Vue({
         app = this;
 
         var item = $(event.target);
-        var scroll = $("body").scrollTop();
+        var scroll = $("html").scrollTop();
         var top = $(item).offset().top;
-        $('body').animate({
-            scrollTop: top+scroll-80
+        $('html').animate({
+            scrollTop: top-80
         }, 500, function(){
           app.openNeed = index;
           //更新index後元素位置會跑掉，重新調回正確位置
           setTimeout(function(){
             var top = $(item).offset().top;
-            var scroll = $("body").scrollTop();
-            $("body").scrollTop(top+scroll-80);
+            var scroll = $("html").scrollTop();
+            $("html").scrollTop(top-80);
           },10);
         });
         
@@ -77,17 +77,17 @@ var g_APP = new Vue({
         app = this;
 
         var item = $(event.target);
-        var scroll = $("body").scrollTop();
+        var scroll = $("html").scrollTop();
         var top = $(item).offset().top;
-        $('body').animate({
-            scrollTop: top+scroll-80
+        $('html').animate({
+            scrollTop: top-80
         }, 500, function(){
           app.openRisk = index;
           //更新index後元素位置會跑掉，重新調回正確位置
           setTimeout(function(){
             var top = $(item).offset().top;
-            var scroll = $("body").scrollTop();
-            $("body").scrollTop(top+scroll-80);
+            var scroll = $("html").scrollTop();
+            $("html").scrollTop(top-80);
           },10);
         });
         
@@ -140,7 +140,7 @@ window.addEventListener('load', function() {
       }
       if(anchor.length > 0){
           $('html').animate({
-              scrollTop: anchor.offset().top+scroll-80
+              scrollTop: anchor.offset().top-80
           }, 500);
           return false;
       }

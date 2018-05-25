@@ -6,7 +6,7 @@ var g_SvgGraph = function(){
 		var map = param.map;
 		var color = d3.scale.log().domain([param.minBound,param.maxBound]).range([param.minColor,param.maxColor]);
 		var textInfo = $(param.textInfo);
-		map.SetData(param.data,color);
+		map.SetData(param.data,color,param.hoverColor,param.selectColor);
 	  	map.OnHover(function(){
 	  		if(map.GetHoverKey() != ""){
 	  			var num = g_Util.NumberWithCommas(map.GetHoverValue());

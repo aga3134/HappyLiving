@@ -39,297 +39,298 @@ html, body {
 .bold {
   font-weight: bold; }
 
-.happy-living .topbar {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 70px;
-  padding: 10px;
-  box-shadow: 0px 2px 5px #888;
-  background-color: white;
-  z-index: 10; }
-  .happy-living .topbar .logo {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    height: 50px;
-    cursor: pointer; }
-  .happy-living .topbar .menu-bt {
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    height: 50px;
-    cursor: pointer; }
-    @media only screen and (min-width: 640px) {
-      .happy-living .topbar .menu-bt {
-        display: none; } }
-  .happy-living .topbar .bt-container {
-    height: 100%;
-    display: none; }
-    @media only screen and (min-width: 640px) {
-      .happy-living .topbar .bt-container {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center; } }
-    .happy-living .topbar .bt-container .bt {
-      display: inline-block;
-      width: 100px;
-      padding: 5px 10px;
-      margin: 5px 10px;
-      text-align: center;
-      color: #fff;
-      background-color: #fb8c00;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px 0px #888;
-      cursor: pointer; }
-      .happy-living .topbar .bt-container .bt:hover {
-        background-color: #ffaa33; }
-
-.happy-living .menu-container {
-  position: fixed;
-  left: 0px;
-  top: 70px;
-  display: none;
-  width: 100%;
-  padding: 10px;
-  margin: 0px;
-  list-style-type: none;
-  box-shadow: 0px 2px 4px 0px #888;
-  background-color: white;
-  font-size: 1.25em;
-  color: #333333; }
-  .happy-living .menu-container.open {
-    display: block; }
-  .happy-living .menu-container li {
+.happy-living {
+  overflow-x: hidden;
+  overflow-y: auto; }
+  .happy-living .topbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
     padding: 10px;
-    border-bottom: 1px solid #fb8c00;
-    cursor: pointer; }
-    .happy-living .menu-container li a {
-      color: #333333;
-      text-decoration: none; }
-    .happy-living .menu-container li:last-of-type {
-      border: none; }
-
-.happy-living .main-container {
-  width: 100%;
-  margin: 100px auto 20px auto;
-  padding: 10px 10px 50px 10px;
-  color: #333333; }
-  .happy-living .main-container .scroll-option {
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; }
-    .happy-living .main-container .scroll-option .scroll-bt {
-      display: inline-block;
-      width: 150px;
-      font-size: 1.2em;
+    box-shadow: 0px 2px 5px #888;
+    background-color: white;
+    z-index: 10; }
+    .happy-living .topbar .logo {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      height: 50px;
+      cursor: pointer; }
+    .happy-living .topbar .menu-bt {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      height: 50px;
+      cursor: pointer; }
+      @media only screen and (min-width: 640px) {
+        .happy-living .topbar .menu-bt {
+          display: none; } }
+    .happy-living .topbar .bt-container {
+      height: 100%;
+      display: none; }
+      @media only screen and (min-width: 640px) {
+        .happy-living .topbar .bt-container {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center; } }
+      .happy-living .topbar .bt-container .bt {
+        display: inline-block;
+        width: 100px;
+        padding: 5px 10px;
+        margin: 5px 10px;
+        text-align: center;
+        color: #fff;
+        background-color: #fb8c00;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px 0px #888;
+        cursor: pointer; }
+        .happy-living .topbar .bt-container .bt:hover {
+          background-color: #ffaa33; }
+  .happy-living .menu-container {
+    position: fixed;
+    left: 0px;
+    top: 70px;
+    display: none;
+    width: 100%;
+    padding: 10px;
+    margin: 0px;
+    list-style-type: none;
+    box-shadow: 0px 2px 4px 0px #888;
+    background-color: white;
+    font-size: 1.25em;
+    color: #333333; }
+    .happy-living .menu-container.open {
+      display: block; }
+    .happy-living .menu-container li {
       padding: 10px;
-      margin: 5px 10px;
-      text-align: center;
-      color: #fff;
-      background-color: #fb8c00;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px 0px #888;
+      border-bottom: 1px solid #fb8c00;
       cursor: pointer; }
-      .happy-living .main-container .scroll-option .scroll-bt:hover {
-        background-color: #ffaa33; }
-  .happy-living .main-container .indent {
-    text-indent: 2em; }
-  .happy-living .main-container .center-p {
-    width: 800px;
-    max-width: 100%;
-    margin: auto;
-    padding: 10px;
-    font-size: 1.25em;
-    line-height: 1.5em; }
-    .happy-living .main-container .center-p ul li {
-      font-weight: bold;
-      padding-left: 10px; }
-    .happy-living .main-container .center-p .desc {
-      font-weight: normal;
-      color: #333333;
-      margin-bottom: 20px;
-      font-size: 0.9em; }
-  .happy-living .main-container a {
-    text-decoration: none;
-    color: #fb8c00; }
-    .happy-living .main-container a:hover {
-      color: #ff3300; }
-  .happy-living .main-container .category {
-    display: inline-block;
-    min-width: 200px;
-    max-width: 100%;
-    margin: 20px auto;
-    padding: 20px 10px 20px 10px;
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333333;
-    border-bottom: 1px solid #fb8c00; }
-  .happy-living .main-container .quest-need {
-    text-align: center;
-    font-size: 1.25em;
-    color: #333333; }
-  .happy-living .main-container .quest-risk {
+      .happy-living .menu-container li a {
+        color: #333333;
+        text-decoration: none; }
+      .happy-living .menu-container li:last-of-type {
+        border: none; }
+  .happy-living .main-container {
     width: 100%;
-    margin: 0px 5px;
-    padding: 5px;
-    text-align: center;
-    font-size: 1.25em;
+    margin: 100px auto 20px auto;
+    padding: 10px 10px 50px 10px;
     color: #333333; }
-  .happy-living .main-container .quest-solution {
-    width: 100%;
-    margin: 0px 5px;
-    padding: 5px;
-    text-align: center;
-    font-size: 1.25em;
-    color: #333333; }
-  .happy-living .main-container .ans-container {
-    display: flex;
-    justify-content: space-around;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    width: 600px;
-    max-width: 100%;
-    margin: 10px auto; }
-    .happy-living .main-container .ans-container .quest-icon {
-      vertical-align: middle;
-      width: 50px; }
-    .happy-living .main-container .ans-container .ans-need {
+    .happy-living .main-container .scroll-option {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; }
+      .happy-living .main-container .scroll-option .scroll-bt {
+        display: inline-block;
+        width: 150px;
+        font-size: 1.2em;
+        padding: 10px;
+        margin: 5px 10px;
+        text-align: center;
+        color: #fff;
+        background-color: #fb8c00;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px 0px #888;
+        cursor: pointer; }
+        .happy-living .main-container .scroll-option .scroll-bt:hover {
+          background-color: #ffaa33; }
+    .happy-living .main-container .indent {
+      text-indent: 2em; }
+    .happy-living .main-container .center-p {
+      width: 800px;
+      max-width: 100%;
+      margin: auto;
+      padding: 10px;
       font-size: 1.25em;
-      cursor: pointer;
-      width: calc(100% - 10px);
-      margin: 5px auto;
-      padding: 5px 10px;
-      background-color: white;
-      box-shadow: 0px 11px 49px 2px rgba(51, 17, 33, 0.14);
-      border-radius: 3px; }
-      .happy-living .main-container .ans-container .ans-need.selected {
-        border: 1px solid red; }
-    .happy-living .main-container .ans-container .risk-container {
-      width: 100%;
+      line-height: 1.5em; }
+      .happy-living .main-container .center-p ul li {
+        font-weight: bold;
+        padding-left: 10px; }
+      .happy-living .main-container .center-p .desc {
+        font-weight: normal;
+        color: #333333;
+        margin-bottom: 20px;
+        font-size: 0.9em; }
+    .happy-living .main-container a {
+      text-decoration: none;
+      color: #fb8c00; }
+      .happy-living .main-container a:hover {
+        color: #ff3300; }
+    .happy-living .main-container .category {
+      display: inline-block;
+      min-width: 200px;
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 20px 10px 20px 10px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333333;
       border-bottom: 1px solid #fb8c00; }
-    .happy-living .main-container .ans-container .ans-risk {
-      border-radius: 3px;
-      width: 100%; }
-      .happy-living .main-container .ans-container .ans-risk img {
-        display: inline-block;
-        margin: 0px 5px;
-        vertical-align: top; }
-      .happy-living .main-container .ans-container .ans-risk .risk-text {
-        display: inline-block;
-        width: calc(100% - 70px); }
-      .happy-living .main-container .ans-container .ans-risk .risk-box {
+    .happy-living .main-container .quest-need {
+      text-align: center;
+      font-size: 1.25em;
+      color: #333333; }
+    .happy-living .main-container .quest-risk {
+      width: 100%;
+      margin: 0px 5px;
+      padding: 5px;
+      text-align: center;
+      font-size: 1.25em;
+      color: #333333; }
+    .happy-living .main-container .quest-solution {
+      width: 100%;
+      margin: 0px 5px;
+      padding: 5px;
+      text-align: center;
+      font-size: 1.25em;
+      color: #333333; }
+    .happy-living .main-container .ans-container {
+      display: flex;
+      justify-content: space-around;
+      align-content: flex-start;
+      flex-wrap: wrap;
+      width: 600px;
+      max-width: 100%;
+      margin: 10px auto; }
+      .happy-living .main-container .ans-container .quest-icon {
+        vertical-align: middle;
+        width: 50px; }
+      .happy-living .main-container .ans-container .ans-need {
         font-size: 1.25em;
         cursor: pointer;
         width: calc(100% - 10px);
         margin: 5px auto;
+        padding: 5px 10px;
+        background-color: white;
+        box-shadow: 0px 11px 49px 2px rgba(51, 17, 33, 0.14);
+        border-radius: 3px; }
+        .happy-living .main-container .ans-container .ans-need.selected {
+          border: 1px solid red; }
+      .happy-living .main-container .ans-container .risk-container {
+        width: 100%;
+        border-bottom: 1px solid #fb8c00; }
+      .happy-living .main-container .ans-container .ans-risk {
+        border-radius: 3px;
+        width: 100%; }
+        .happy-living .main-container .ans-container .ans-risk img {
+          display: inline-block;
+          margin: 0px 5px;
+          vertical-align: top; }
+        .happy-living .main-container .ans-container .ans-risk .risk-text {
+          display: inline-block;
+          width: calc(100% - 70px); }
+        .happy-living .main-container .ans-container .ans-risk .risk-box {
+          font-size: 1.25em;
+          cursor: pointer;
+          width: calc(100% - 10px);
+          margin: 5px auto;
+          padding: 10px;
+          border-left: 5px solid #fb8c00;
+          box-shadow: 0px 11px 49px 2px rgba(51, 17, 33, 0.14); }
+          .happy-living .main-container .ans-container .ans-risk .risk-box.selected {
+            border: 1px solid #fb8c00; }
+    .happy-living .main-container .analysis-option {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; }
+      .happy-living .main-container .analysis-option .analysis-bt {
+        display: inline-block;
+        width: 200px;
+        font-size: 1.5em;
         padding: 10px;
-        border-left: 5px solid #fb8c00;
-        box-shadow: 0px 11px 49px 2px rgba(51, 17, 33, 0.14); }
-        .happy-living .main-container .ans-container .ans-risk .risk-box.selected {
-          border: 1px solid #fb8c00; }
-  .happy-living .main-container .analysis-option {
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; }
-    .happy-living .main-container .analysis-option .analysis-bt {
-      display: inline-block;
-      width: 200px;
-      font-size: 1.5em;
-      padding: 10px;
-      margin: 5px 10px;
-      text-align: center;
-      color: #fff;
-      background-color: #fb8c00;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px 0px #888;
-      cursor: pointer; }
-      .happy-living .main-container .analysis-option .analysis-bt:hover {
-        background-color: #ffaa33; }
-  .happy-living .main-container .remark {
-    width: 600px;
-    max-width: 100%;
-    margin: 30px auto;
-    font-size: 0.9em; }
-  .happy-living .main-container .logo-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap; }
-    .happy-living .main-container .logo-container .sponsor {
-      margin: 10px;
-      height: 100px; }
-  .happy-living .main-container .dev {
-    cursor: pointer;
-    width: 200px; }
-  .happy-living .main-container .table-container {
-    margin: auto;
-    width: 800px;
-    max-width: 100%;
-    overflow: auto; }
-    .happy-living .main-container .table-container table {
-      border-collapse: collapse;
-      vertical-align: top;
-      width: 100%;
+        margin: 5px 10px;
+        text-align: center;
+        color: #fff;
+        background-color: #fb8c00;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px 0px #888;
+        cursor: pointer; }
+        .happy-living .main-container .analysis-option .analysis-bt:hover {
+          background-color: #ffaa33; }
+    .happy-living .main-container .remark {
+      width: 600px;
+      max-width: 100%;
+      margin: 30px auto;
+      font-size: 0.9em; }
+    .happy-living .main-container .logo-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap; }
+      .happy-living .main-container .logo-container .sponsor {
+        margin: 10px;
+        height: 100px; }
+    .happy-living .main-container .dev {
+      cursor: pointer;
+      width: 200px; }
+    .happy-living .main-container .table-container {
+      margin: auto;
+      width: 800px;
+      max-width: 100%;
+      overflow: auto; }
+      .happy-living .main-container .table-container table {
+        border-collapse: collapse;
+        vertical-align: top;
+        width: 100%;
+        font-size: 1.2em;
+        text-align: center;
+        color: #333333; }
+        .happy-living .main-container .table-container table caption {
+          padding: 5px; }
+        .happy-living .main-container .table-container table th {
+          padding: 10px;
+          background-color: #e97a15;
+          border: 1px solid #ffffff;
+          color: #ffffff; }
+        .happy-living .main-container .table-container table tr:nth-child(even) {
+          background-color: #f6d6cc; }
+        .happy-living .main-container .table-container table tr:nth-child(odd) {
+          background-color: #faebe7; }
+        .happy-living .main-container .table-container table td {
+          padding: 10px;
+          border: 1px solid #ffffff; }
+    .happy-living .main-container .sub-title {
       font-size: 1.2em;
-      text-align: center;
-      color: #333333; }
-      .happy-living .main-container .table-container table caption {
-        padding: 5px; }
-      .happy-living .main-container .table-container table th {
-        padding: 10px;
-        background-color: #e97a15;
-        border: 1px solid #ffffff;
-        color: #ffffff; }
-      .happy-living .main-container .table-container table tr:nth-child(even) {
-        background-color: #f6d6cc; }
-      .happy-living .main-container .table-container table tr:nth-child(odd) {
-        background-color: #faebe7; }
-      .happy-living .main-container .table-container table td {
-        padding: 10px;
-        border: 1px solid #ffffff; }
-  .happy-living .main-container .sub-title {
-    font-size: 1.2em;
-    color: #000000;
-    background-color: #53b7af;
-    padding: 10px;
-    font-weight: bold; }
-  .happy-living .main-container .interview-img {
-    vertical-align: middle;
-    margin: 30px 10px;
-    width: 350px;
-    max-width: calc(100% - 20px);
-    object-fit: cover; }
-  .happy-living .main-container .quest-block {
-    vertical-align: middle;
-    display: inline-block;
-    width: 350px;
-    max-width: 100%;
-    padding: 10px;
-    margin: 10px;
-    text-align: left; }
-    .happy-living .main-container .quest-block .quest1 {
-      color: #e97a15;
-      font-weight: bold; }
-    .happy-living .main-container .quest-block .quest2 {
       color: #000000;
+      background-color: #53b7af;
+      padding: 10px;
       font-weight: bold; }
-    .happy-living .main-container .quest-block .quest3 {
-      color: #000000;
-      font-weight: normal; }
-  .happy-living .main-container .list-item {
-    font-size: 1.5em; }
-  .happy-living .main-container .decoration {
-    font-size: 0.6em;
-    vertical-align: middle;
-    padding-right: 20px; }
+    .happy-living .main-container .interview-img {
+      vertical-align: middle;
+      margin: 30px 10px;
+      width: 350px;
+      max-width: calc(100% - 20px);
+      object-fit: cover; }
+    .happy-living .main-container .quest-block {
+      vertical-align: middle;
+      display: inline-block;
+      width: 350px;
+      max-width: 100%;
+      padding: 10px;
+      margin: 10px;
+      text-align: left; }
+      .happy-living .main-container .quest-block .quest1 {
+        color: #e97a15;
+        font-weight: bold; }
+      .happy-living .main-container .quest-block .quest2 {
+        color: #000000;
+        font-weight: bold; }
+      .happy-living .main-container .quest-block .quest3 {
+        color: #000000;
+        font-weight: normal; }
+    .happy-living .main-container .list-item {
+      font-size: 1.5em; }
+    .happy-living .main-container .decoration {
+      font-size: 0.6em;
+      vertical-align: middle;
+      padding-right: 20px; }
 
 .analysis-container {
   width: 100%;
@@ -372,6 +373,10 @@ html, body {
   .graph-container .info-graph {
     position: relative;
     padding: 10px; }
+    .graph-container .info-graph select {
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin: 5px; }
   .graph-container .graph-title {
     margin: 5px;
     text-align: center;
@@ -399,7 +404,7 @@ html, body {
     justify-content: center;
     flex-wrap: wrap; }
     .graph-container .option-container .option-bt {
-      background-color: #c8c8c8;
+      background-color: #dcbedc;
       padding: 5px 10px;
       color: #323232;
       margin: 5px 2px;
@@ -408,7 +413,7 @@ html, body {
       .graph-container .option-container .option-bt:hover {
         color: red; }
       .graph-container .option-container .option-bt.selected {
-        background-color: #646464;
+        background-color: #967896;
         color: white; }
   .graph-container svg {
     display: block;
@@ -471,7 +476,7 @@ html, body {
     margin-bottom: 10px;
     border-bottom: 1px solid #cccccc; }
   .graph-container .rank-table {
-    width: 800px;
+    width: 900px;
     margin: auto;
     padding-bottom: 20px;
     max-width: 100%; }
@@ -511,6 +516,7 @@ html, body {
   left: 0px;
   width: 100%;
   padding: 10px;
+  border-radius: 3px 3px 0px 0px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -536,7 +542,8 @@ html, body {
     display: inline-block;
     padding: 10px 5px 10px 15px; }
   .control-bar select {
-    padding: 5px; }
+    padding: 5px;
+    border-radius: 5px; }
   .control-bar input[type="text"] {
     width: 100px;
     padding: 5px; }

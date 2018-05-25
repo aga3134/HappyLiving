@@ -6,6 +6,7 @@ Vue.component('info-graph', {
 			graphID:"",
 			infoID:"",
 			input: "",
+			total: "",
 			type: "gender",
 			gender:"全部",
 			minAge:20,
@@ -18,6 +19,8 @@ Vue.component('info-graph', {
 			header: "",
 			isOpen: false,
 			mapOption: 1,
+			rankPage: 0,
+			pageOffset: 10,
 			map: ""
 		};
 	},
@@ -37,25 +40,32 @@ Vue.component('info-graph', {
 					排序\
 				</div>\
 			</div>\
+			<div v-show="type === \'countyRatio\'" class="option-container">\
+				<select v-model="rankPage" v-on:change="UpdateGraph();">\
+					<option value=\'0\'>第1頁</option>\
+					<option value=\'1\'>第2頁</option>\
+					<option value=\'2\'>第3頁</option>\
+				</select>\
+			</div>\
 			<svg v-bind:id="graphID"></svg>\
 			<div class="center" v-bind:id="infoID">{{graphDesc}}</div>\
 			<div class="option-panel" v-bind:class="OpenClass()">\
 				<div class="graph-title">篩選</div>\
-				<div v-show="type !== \'gender\'">\
+				<div v-show="type !== \'gender\' && type !== \'genderRatio\'">\
 					<div class="label">姓別</div>\
 					<select v-model="gender" v-on:change="UpdateGraph();">\
 						<option value="全部">全部</option>\
 						<option v-for="g in header.gender" v-bind:value="g.id">{{g.name}}</option>\
 					</select>\
 				</div>\
-				<div v-show="type !== \'county\'">\
+				<div v-show="type !== \'county\' && type !== \'countyRatio\'">\
 					<div class="label">縣市</div>\
 					<select v-model="county" v-on:change="UpdateGraph();">\
 						<option value="全部">全部</option>\
 						<option v-for="c in header.county" v-bind:value="c.id">{{c.name}}</option>\
 					</select><br>\
 				</div>\
-				<div v-show="type !== \'age\'">\
+				<div v-show="type !== \'age\' && type !== \'ageRatio\'">\
 					<div class="label">年齡</div>\
 					<select v-model="minAge" v-on:change="UpdateGraph();">\
 						<option v-for="a in header.age" v-if="a.minAge>0" v-bind:value="a.minAge">{{a.minAge}}</option>\
@@ -64,7 +74,7 @@ Vue.component('info-graph', {
 						<option v-for="a in header.age" v-if="a.maxAge>0" v-bind:value="a.maxAge">{{a.maxAge}}</option>\
 					</select><br>\
 				</div>\
-				<div v-show="type !== \'living\'">\
+				<div v-show="type !== \'living\' && type !== \'livingRatio\'">\
 					<div class="label">居住</div>\
 					<select v-model="living" v-on:change="UpdateGraph();">\
 						<option value="全部">全部</option>\
@@ -114,16 +124,28 @@ Vue.component('info-graph', {
 				case "livewith":
 					this.DrawLivewith();
 					break;
+				case "genderRatio":
+					this.DrawGenderRatio();
+					break;
+				case "countyRatio":
+					this.DrawCountyRatio();
+					break;
+				case "ageRatio":
+					this.DrawAgeRatio();
+					break;
+				case "livingRatio":
+					this.DrawLivingRatio();
+					break;
 			}
 		},
-		FilterData: function(){
+		FilterData: function(input){
 			var gender = this.gender;
 			var minAge = this.minAge;
 			var maxAge = this.maxAge;
 			var county = this.county;
 			var living = this.living;
 			var header = this.header;
-			var arr = this.input;
+			var arr = input;
 
 			switch(this.type){
 				case "gender":
@@ -148,6 +170,23 @@ Vue.component('info-graph', {
 					break;
 				case "livewith":
 					this.graphTitle = "與誰同住分佈";
+					break;
+				case "genderRatio":
+					this.graphTitle = "選擇/性別 佔比";
+					gender = "全部";
+					break;
+				case "countyRatio":
+					this.graphTitle = "選擇/縣市 佔比";
+					county = "全部";
+					break;
+				case "ageRatio":
+					this.graphTitle = "選擇/年齡 佔比";
+					minAge = 20;
+					maxAge = 100;
+					break;
+				case "livingRatio":
+					this.graphTitle = "選擇/居住型態 佔比";
+					living = "全部";
 					break;
 			}
 
@@ -185,7 +224,7 @@ Vue.component('info-graph', {
 		DrawGender: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var genderGroup = d3.nest()
 				.key(function(d) {
@@ -227,7 +266,7 @@ Vue.component('info-graph', {
 		DrawAge: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var ageGroup = d3.nest()
 				.key(function(d) {return d.age;})
@@ -255,8 +294,9 @@ Vue.component('info-graph', {
 			param.minX = 20;
 			param.maxX = 85;
 			param.keyY = "values";
-			param.minColor = "#FF9999";
-			param.maxColor = "#996666";
+			var color = "#d53c3c";
+		    param.minColor = d3.rgb(color).brighter(3);
+		    param.maxColor = color;
 			param.unitX = "歲";
 			param.unitY = "人";
 			param.textInfo = "#"+this.infoID;
@@ -273,7 +313,7 @@ Vue.component('info-graph', {
 		DrawCounty: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var countyGroup = d3.nest()
 			.key(function(d) {
@@ -305,7 +345,7 @@ Vue.component('info-graph', {
 			param.minBound = maxV>100?10:1;
 			param.maxBound = maxV;
 			param.minColor = "#FFFFFF";
-			param.maxColor = "#999999";
+			param.maxColor = "#DAC4DA";
 			param.textInfo = "#"+this.infoID;
 			param.data = countyGroup;
 			param.unit = "人";
@@ -314,7 +354,7 @@ Vue.component('info-graph', {
 		DrawLiving: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var livingGroup = d3.nest()
 				.key(function(d) {
@@ -350,7 +390,7 @@ Vue.component('info-graph', {
 		DrawLang: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var langGroup = [];
 			for(var i=0;i<header.lang.length;i++){
@@ -386,7 +426,7 @@ Vue.component('info-graph', {
 		DrawLivewith: function(){
 			var value = this.value;
 			var header = this.header;
-			var arr = this.FilterData();
+			var arr = this.FilterData(this.input);
 
 			var livewithGroup = [];
 			var total = 0;
@@ -425,6 +465,250 @@ Vue.component('info-graph', {
 			};
 	  		g_SvgGraph.SortedBar(param);
 
+		},
+		DrawGenderRatio: function(){
+			if(!this.total) return;
+			var value = this.value;
+			var header = this.header;
+			var arr = this.FilterData(this.input);
+			var total = this.FilterData(this.total);
+
+			var genderGroup = d3.nest()
+				.key(function(d) {
+					var gID = parseInt(d.gender);
+					var gender = header.gender[gID].name;
+					return gender;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(arr);
+
+			var genderTotal = d3.nest()
+				.key(function(d) {
+					var gID = parseInt(d.gender);
+					var gender = header.gender[gID].name;
+					return gender;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(total);
+
+			for(var i=0;i<genderGroup.length;i++){
+				genderGroup[i].total = genderTotal[i].values;
+				if(genderTotal[i].values == 0) genderGroup[i].ratio = 0;
+				else genderGroup[i].ratio = (100*genderGroup[i].values/genderTotal[i].values);
+			}
+
+			var maxV = d3.max(genderGroup,function(d){return d.ratio;});
+			var param = {};
+		    param.selector = "#"+this.graphID;
+		    param.textInfo = "#"+this.infoID;
+		    param.key = "key";
+		    param.value = "ratio";
+		    param.maxValue = maxV;
+		    var color = "#80add7";
+		    param.minColor = d3.rgb(color).brighter(3);
+		    param.maxColor = color;
+		    param.unit = "百分比";
+		    param.data = genderGroup;
+		    param.infoFn = function(d){
+		    	var num = g_Util.NumberWithCommas(d.values.toFixed(0));
+		    	var total = g_Util.NumberWithCommas(d.total.toFixed(0));
+		    	var ratio = d.ratio.toFixed(1);
+		        var str = d.key+" 選擇: "+num+"人 總數: "+total+"人 佔比: "+ratio+"%";
+		        return str;
+		    };
+		    g_SvgGraph.SortedBar(param);
+
+		},
+		DrawAgeRatio: function(){
+			if(!this.total) return;
+			var value = this.value;
+			var header = this.header;
+			var arr = this.FilterData(this.input);
+			var total = this.FilterData(this.total);
+
+			var ageGroup = d3.nest()
+				.key(function(d) {return d.age;})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					}); 
+				})
+				.entries(arr);
+
+			var ageTotal = d3.nest()
+				.key(function(d) {return d.age;})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					}); 
+				})
+				.entries(total);
+
+			for(var i=0;i<ageGroup.length;i++){
+				var ageID = parseInt(ageGroup[i].key);
+				var age = header.age[ageID];
+				ageGroup[i].minAge = age.minAge;
+				ageGroup[i].maxAge = age.maxAge;
+				ageGroup[i].total = ageTotal[i].values;
+				if(ageTotal[i].values == 0) ageGroup[i].ratio = 0;
+				else ageGroup[i].ratio = (100*ageGroup[i].values/ageTotal[i].values);
+			}
+
+			var maxV = d3.max(ageGroup,function(d){return d.ratio;});
+			var param = {};
+			param.selector = "#"+this.graphID;
+			param.keyXMin = "minAge";
+			param.keyXMax = "maxAge";
+			param.minX = 20;
+			param.maxX = 85;
+			param.keyY = "ratio";
+			var color = "#ee6c81";
+		    param.minColor = d3.rgb(color).brighter(3);
+		    param.maxColor = color;
+			param.unitX = "歲";
+			param.unitY = "人";
+			param.textInfo = "#"+this.infoID;
+			param.data = ageGroup;
+			param.maxValue = maxV;
+			param.infoFn = function(d){
+				var num = g_Util.NumberWithCommas(d.values.toFixed(0));
+		    	var total = g_Util.NumberWithCommas(d.total.toFixed(0));
+		    	var ratio = d.ratio.toFixed(1);
+		        var str = d.minAge+"~"+d.maxAge+"歲 "+"選擇: "+num+"人 總數: "+total+"人 佔比: "+ratio+"%";
+		        return str;
+			};
+			g_SvgGraph.Histogram(param);
+		},
+		DrawCountyRatio: function(){
+			if(!this.total) return;
+			var value = this.value;
+			var header = this.header;
+			var arr = this.FilterData(this.input);
+			var total = this.FilterData(this.total);
+
+			var countyGroup = d3.nest()
+				.key(function(d) {
+					var cID = parseInt(d.county);
+					var county = header.county[cID].name;
+					return county;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(arr);
+
+			var countyTotal = d3.nest()
+				.key(function(d) {
+					var cID = parseInt(d.county);
+					var county = header.county[cID].name;
+					return county;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(total);
+
+			for(var i=0;i<countyGroup.length;i++){
+				countyGroup[i].total = countyTotal[i].values;
+				if(countyTotal[i].values == 0) countyGroup[i].ratio = 0;
+				else countyGroup[i].ratio = (100*countyGroup[i].values/countyTotal[i].values);
+			}
+
+			var maxV = d3.max(countyGroup,function(d){return d.ratio;});
+			var param = {};
+		    param.selector = "#"+this.graphID;
+		    param.textInfo = "#"+this.infoID;
+		    param.key = "key";
+		    param.value = "ratio";
+		    param.maxValue = maxV;
+		    var color = "#edf295";
+		    param.minColor = d3.rgb(color).brighter(3);
+		    param.maxColor = color;
+		    param.unit = "百分比";
+		    param.rankOffset = this.rankPage*this.pageOffset;
+			param.rankLength = this.pageOffset;
+		    param.data = countyGroup;
+		    param.infoFn = function(d){
+		    	var num = g_Util.NumberWithCommas(d.values.toFixed(0));
+		    	var total = g_Util.NumberWithCommas(d.total.toFixed(0));
+		    	var ratio = d.ratio.toFixed(1);
+		        var str = d.key+" 選擇: "+num+"人 總數: "+total+"人 佔比: "+ratio+"%";
+		        return str;
+		    };
+		    g_SvgGraph.SortedBar(param);
+
+		},
+		DrawLivingRatio: function(){
+			if(!this.total) return;
+			var value = this.value;
+			var header = this.header;
+			var arr = this.FilterData(this.input);
+			var total = this.FilterData(this.total);
+
+			var livingGroup = d3.nest()
+				.key(function(d) {
+					var lID = parseInt(d.living);
+					var living = header.living[lID].name;
+					return living;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(arr);
+
+			var livingTotal = d3.nest()
+				.key(function(d) {
+					var lID = parseInt(d.living);
+					var living = header.living[lID].name;
+					return living;
+				})
+				.rollup(function(arr){
+					return d3.sum(arr,function(d){
+						return d[value];
+					});
+				})
+				.entries(total);
+
+			for(var i=0;i<livingGroup.length;i++){
+				livingGroup[i].total = livingTotal[i].values;
+				if(livingTotal[i].values == 0) livingGroup[i].ratio = 0;
+				else livingGroup[i].ratio = (100*livingGroup[i].values/livingTotal[i].values);
+			}
+
+			var maxV = d3.max(livingGroup,function(d){return d.ratio;});
+			var param = {};
+		    param.selector = "#"+this.graphID;
+		    param.textInfo = "#"+this.infoID;
+		    param.key = "key";
+		    param.value = "ratio";
+		    param.maxValue = maxV;
+		    var color = "#99bfaa";
+		    param.minColor = d3.rgb(color).brighter(3);
+		    param.maxColor = color;
+		    param.unit = "百分比";
+		    param.data = livingGroup;
+		    param.infoFn = function(d){
+		    	var num = g_Util.NumberWithCommas(d.values.toFixed(0));
+		    	var total = g_Util.NumberWithCommas(d.total.toFixed(0));
+		    	var ratio = d.ratio.toFixed(1);
+		        var str = d.key+" 選擇: "+num+"人 總數: "+total+"人 佔比: "+ratio+"%";
+		        return str;
+		    };
+		    g_SvgGraph.SortedBar(param);
 		},
 		OpenClass: function(){
 			return {"open": this.isOpen};

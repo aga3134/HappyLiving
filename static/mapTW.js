@@ -104,6 +104,8 @@ function MapTW(){
 	var selectValue = "";
 	var keyData;
 	var fillColor;
+	var hoverColor = "#FFAA0D";
+	var selectColor = "#FF3333";
 	var DrawMapTW = function(selector,year){
 		if(!keyData) return;
 
@@ -165,14 +167,14 @@ function MapTW(){
 		}
 		tw.append("g")
 			.attr("class","hoverOutline")
-			.attr("stroke","#FFAA0D")
+			.attr("stroke",hoverColor)
 			.attr("fill","none")
 			.on("click",function(){
 				ClickFn(this);
 			});
 		tw.append("g")
 			.attr("class","selectOutline")
-			.attr("stroke","#FF3333")
+			.attr("stroke",selectColor)
 			.attr("fill","none");
 
 		var selectItem = svg.select("g[data-select='"+selectKey+"']")[0];
@@ -191,8 +193,8 @@ function MapTW(){
 			var text = svg.select("text[data-select='"+county+"']");
 
 			if(county != selectKey){
-				text.attr("fill","#FFAA0D");
-				rect.attr("stroke","#FFAA0D").attr("stroke-width",2);
+				text.attr("fill",hoverColor);
+				rect.attr("stroke",hoverColor).attr("stroke-width",2);
 				//move hovered object up
 				svg.selectAll("rect").sort(function (a, b) {
 					if (a.county != county) return -1;
@@ -228,8 +230,8 @@ function MapTW(){
 			preText.attr("fill","black");
 			preRect.attr("stroke","black").attr("stroke-width",0.5);
 
-			text.attr("fill","#FF3333");
-			rect.attr("stroke","#FF3333").attr("stroke-width",2);
+			text.attr("fill",selectColor);
+			rect.attr("stroke",selectColor).attr("stroke-width",2);
 			//move hovered object up
 			svg.selectAll("rect").sort(function (a, b) {
 				if (a.county != county) return -1;
@@ -314,10 +316,12 @@ function MapTW(){
 	var GetSelectKey = function(){return selectKey;};
 	var GetSelectValue = function(){return selectValue;}
 
-	var SetData = function(data,colorFn){
+	var SetData = function(data,colorFn,hoverC,selectC){
 		keyData = data;
 		if(!colorFn) colorFn = d3.scale.linear().domain([0,1]).range(["#FFFFFF",'#000000']);
 		fillColor = colorFn;
+		if(hoverC) hoverColor = hoverC;
+		if(selectC) selectColor = selectC;
 	};
 
 	//build object methods
