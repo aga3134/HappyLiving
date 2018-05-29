@@ -15,7 +15,7 @@ import warnings
 
 def CreateHeader():
     header = {}
-    header["gender"] = [{"id":0,"name":"姓別無資料"},
+    header["gender"] = [{"id":0,"name":"性別無資料"},
           {"id":1,"name":"男"},{"id":2,"name":"女"}]
     header["age"] = [{"id":0,"name":"年齡無資料","minAge":0,"maxAge":0},
        {"id":1,"name":"20-24歲","minAge":20,"maxAge":24},
@@ -473,6 +473,7 @@ def CreateEmptyStruct():
     obj["age"] = ""
     obj["county"] = ""
     obj["living"] = ""
+    obj["weight"] = 0
     obj["num"] = 0
     obj["lang"] = [0,0,0,0]
     obj["livewith"] = [0,0,0,0,0]
@@ -881,6 +882,11 @@ def DataToJSON(f):
     result["data"] = []
     hashObj = {}
     
+    wb = load_workbook(filename = 'data/全齡權重1021_Claudia.xlsx', data_only=True)
+    sheet = wb["SPSS程式"]
+    countyNum = len(header["county"])-1
+    ageNum = len(header["age"])-1
+    
     for gender in header["gender"]:
         for age in header["age"]:
             for countycode in header["county"]:
@@ -890,6 +896,13 @@ def DataToJSON(f):
                     obj["age"] = age["id"]
                     obj["county"] = countycode["id"]
                     obj["living"] = livingstatus["id"]
+                    
+                    if gender["id"] == 0 or age["id"] == 0 or countycode["id"] == 0:
+                        obj["weight"] = 0
+                    else:
+                        row = 1+(gender["id"]-1)*ageNum*countyNum+(age["id"]-1)*countyNum+(countycode["id"]-1)
+                        obj["weight"] = sheet['O'+str(row)].value
+            
                     result["data"].append(obj)
                     hashID = GenHashID(gender["id"],age["id"],countycode["id"],livingstatus["id"])
                     hashObj[hashID] = obj
@@ -1082,10 +1095,7 @@ def JSONToDB(conn,header,data):
     riskField = "gender,age,county,living,need,risk,num,wNum"
     solutionField = "gender,age,county,living,need,risk,solution,deg1,deg2,deg3,deg4,deg5,wDeg1,wDeg2,wDeg3,wDeg4,wDeg5"
     
-    wb = load_workbook(filename = 'data/全齡權重1021_Claudia.xlsx', data_only=True)
-    sheet = wb["SPSS程式"]
-    countyNum = len(header["county"])-1
-    ageNum = len(header["age"])-1
+    
         
     for d in data:
         #insert basic info
@@ -1095,13 +1105,7 @@ def JSONToDB(conn,header,data):
         basic["county"] = d["county"]
         basic["living"] = d["living"]
         basic["num"] = d["num"]
-        if d["gender"] == 0 or d["age"] == 0 or d["county"] == 0:
-            weight = 0
-        else:
-            row = 1+(d["gender"]-1)*ageNum*countyNum+(d["age"]-1)*countyNum+(d["county"]-1)
-            weight = sheet['O'+str(row)].value
-        
-        basic["weight"] = weight
+        basic["weight"] = d["weight"]
 
         basic["lang_Mandarin"] = d["lang"][1]
         basic["lang_Taiwanese"] = d["lang"][2]
@@ -1126,7 +1130,7 @@ def JSONToDB(conn,header,data):
             need["living"] = d["living"]
             need["need"] = nIndex
             need["num"] = n["num"]
-            need["wNum"] = n["num"]*weight
+            need["wNum"] = n["num"]*d["weight"]
             
             val = util.GenValue(need,needField)
             with connection.cursor() as cursor:
@@ -1143,7 +1147,7 @@ def JSONToDB(conn,header,data):
                 risk["need"] = nIndex
                 risk["risk"] = rIndex
                 risk["num"] = r["num"]
-                risk["wNum"] = r["num"]*weight
+                risk["wNum"] = r["num"]*d["weight"]
                 
                 val = util.GenValue(risk,riskField)
                 with connection.cursor() as cursor:
@@ -1162,7 +1166,7 @@ def JSONToDB(conn,header,data):
                     solution["solution"] = sIndex
                     for i in range(0,5):
                         solution["deg"+str(i+1)] =  s["num"][i]
-                        solution["wDeg"+str(i+1)] =  s["num"][i]*weight
+                        solution["wDeg"+str(i+1)] =  s["num"][i]*d["weight"]
                     
                     val = util.GenValue(solution,solutionField)
                     with connection.cursor() as cursor:
