@@ -107,8 +107,7 @@ html, body {
       display: block; }
     .happy-living .menu-container li {
       padding: 10px;
-      border-bottom: 1px solid #fb8c00;
-      cursor: pointer; }
+      border-bottom: 1px solid #fb8c00; }
       .happy-living .menu-container li a {
         color: #333333;
         text-decoration: none; }
