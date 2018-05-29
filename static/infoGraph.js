@@ -21,7 +21,8 @@ Vue.component('info-graph', {
 			mapOption: 1,
 			rankPage: 0,
 			pageOffset: 10,
-			map: ""
+			map: "",
+			colorArr: g_Util.ColorCategory(20)
 		};
 	},
 	template: '\
@@ -453,8 +454,9 @@ Vue.component('info-graph', {
 	  		param.key = "key";
 	  		param.value = "values";
 	  		param.maxValue = maxV;
-	  		param.minColor = "#BBBB99";
-	  		param.maxColor = "#FFFF99";
+	  		var color = this.colorArr(4);
+	  		param.minColor = color;
+	  		param.maxColor = d3.rgb(color).brighter(1);
 	  		param.unit = "人";
 	  		param.data = livewithGroup;
 	  		param.infoFn = function(d){
@@ -512,7 +514,7 @@ Vue.component('info-graph', {
 		    param.key = "key";
 		    param.value = "ratio";
 		    param.maxValue = maxV;
-		    var color = "#80add7";
+		    var color = this.colorArr(5);
 		    param.minColor = d3.rgb(color).brighter(3);
 		    param.maxColor = color;
 		    param.unit = "百分比";
@@ -570,7 +572,7 @@ Vue.component('info-graph', {
 			param.minX = 20;
 			param.maxX = 85;
 			param.keyY = "ratio";
-			var color = "#ee6c81";
+			var color = this.colorArr(0);
 		    param.minColor = d3.rgb(color).brighter(3);
 		    param.maxColor = color;
 			param.unitX = "歲";
@@ -633,7 +635,7 @@ Vue.component('info-graph', {
 		    param.key = "key";
 		    param.value = "ratio";
 		    param.maxValue = maxV;
-		    var color = "#edf295";
+		    var color = this.colorArr(18);
 		    param.minColor = d3.rgb(color).brighter(3);
 		    param.maxColor = color;
 		    param.unit = "百分比";
@@ -696,7 +698,7 @@ Vue.component('info-graph', {
 		    param.key = "key";
 		    param.value = "ratio";
 		    param.maxValue = maxV;
-		    var color = "#99bfaa";
+		    var color = this.colorArr(12);
 		    param.minColor = d3.rgb(color).brighter(3);
 		    param.maxColor = color;
 		    param.unit = "百分比";
