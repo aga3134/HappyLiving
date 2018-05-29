@@ -53,7 +53,7 @@ Vue.component('info-graph', {
 			<div class="option-panel" v-bind:class="OpenClass()">\
 				<div class="graph-title">篩選</div>\
 				<div v-show="type !== \'gender\' && type !== \'genderRatio\'">\
-					<div class="label">姓別</div>\
+					<div class="label">性別</div>\
 					<select v-model="gender" v-on:change="UpdateGraph();">\
 						<option value="全部">全部</option>\
 						<option v-for="g in header.gender" v-bind:value="g.id">{{g.name}}</option>\
