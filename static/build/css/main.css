@@ -101,7 +101,8 @@ html, body {
     box-shadow: 0px 2px 4px 0px #888;
     background-color: white;
     font-size: 1.25em;
-    color: #333333; }
+    color: #333333;
+    z-index: 9; }
     .happy-living .menu-container.open {
       display: block; }
     .happy-living .menu-container li {
