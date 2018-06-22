@@ -31,7 +31,7 @@ var g_Analysis = new Vue({
       this.by = param["by"];
     }
 
-    $.get("/static/header.json",function(data){
+    $.get("/static/header.json?v=1.0",function(data){
       this.header = data;
 
       //init distData

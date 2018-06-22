@@ -19,7 +19,7 @@ var g_APP = new Vue({
   },
   created: function () {
     this.map = new MapTW();
-  	$.get("/static/header.json",function(data){
+  	$.get("/static/header.json?v=1.0",function(data){
       this.header = data;
       var need = data.need;
       this.quest.need = [];
