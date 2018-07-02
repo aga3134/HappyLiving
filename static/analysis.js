@@ -302,13 +302,15 @@ var g_Analysis = new Vue({
         g_SvgGraph.Histogram(param);
       }
     },
-    SelectNeed: function(id){
+    SelectNeed: function(id,name){
+      ga('send','event','analysis-by-info','SelectNeed',name);
       $("#switchH").css("left","-100%");
       this.levelSelect = 1;
       this.needSelect = id;
       this.UpdateRankGraph();
     },
-    SelectRisk: function(id){
+    SelectRisk: function(id,name){
+      ga('send','event','analysis-by-info','SelectRisk',name);
       $("#switchH").css("left","-200%");
       this.levelSelect = 2;
       this.riskSelect = id;
@@ -447,6 +449,7 @@ var g_Analysis = new Vue({
       this.SetMinimize(false);
       if(this.curNeed >= 0 && this.curNeed < this.header.need.length){
         this.needOption = this.header.need[this.curNeed].risk;
+        ga('send','event','analysis-by-need','UpdateNeedOption',this.header.need[this.curNeed].name);
       }
       else{
         this.needOption = [];
@@ -461,6 +464,7 @@ var g_Analysis = new Vue({
       this.SetMinimize(false);
       if(this.curRisk >= 0 && this.curRisk < this.needOption.length){
         this.riskOption = this.needOption[this.curRisk].solution;
+        ga('send','event','analysis-by-need','UpdateRiskOption',this.needOption[this.curRisk].name);
       }
       else{
         this.riskOption = [];
@@ -470,6 +474,9 @@ var g_Analysis = new Vue({
       this.UpdateGraph();
     },
     UpdateSolutionOption: function(){
+      if(this.curSolution >= 0 && this.curSolution < this.riskOption.length){
+        ga('send','event','analysis-by-need','UpdateSolutionOption',this.riskOption[this.curSolution].name);
+      }
       this.SetMinimize(false);
       this.curDeg = "全部";
       this.UpdateGraph();
