@@ -303,14 +303,20 @@ var g_Analysis = new Vue({
       }
     },
     SelectNeed: function(id,name){
-      ga('send','event','analysis-by-info','SelectNeed',name);
+      gtag('event', 'analysis-by-info', {
+        'event_category': 'SelectNeed',
+        'event_label': name
+      });
       $("#switchH").css("left","-100%");
       this.levelSelect = 1;
       this.needSelect = id;
       this.UpdateRankGraph();
     },
     SelectRisk: function(id,name){
-      ga('send','event','analysis-by-info','SelectRisk',name);
+      gtag('event', 'analysis-by-info', {
+        'event_category': 'SelectRisk',
+        'event_label': name
+      });
       $("#switchH").css("left","-200%");
       this.levelSelect = 2;
       this.riskSelect = id;
@@ -449,7 +455,10 @@ var g_Analysis = new Vue({
       this.SetMinimize(false);
       if(this.curNeed >= 0 && this.curNeed < this.header.need.length){
         this.needOption = this.header.need[this.curNeed].risk;
-        ga('send','event','analysis-by-need','UpdateNeedOption',this.header.need[this.curNeed].name);
+        gtag('event', 'analysis-by-need', {
+          'event_category': 'UpdateNeedOption',
+          'event_label': this.header.need[this.curNeed].name
+        });
       }
       else{
         this.needOption = [];
@@ -464,7 +473,10 @@ var g_Analysis = new Vue({
       this.SetMinimize(false);
       if(this.curRisk >= 0 && this.curRisk < this.needOption.length){
         this.riskOption = this.needOption[this.curRisk].solution;
-        ga('send','event','analysis-by-need','UpdateRiskOption',this.needOption[this.curRisk].name);
+        gtag('event', 'analysis-by-need', {
+          'event_category': 'UpdateRiskOption',
+          'event_label': this.needOption[this.curRisk].name
+        });
       }
       else{
         this.riskOption = [];
@@ -475,7 +487,10 @@ var g_Analysis = new Vue({
     },
     UpdateSolutionOption: function(){
       if(this.curSolution >= 0 && this.curSolution < this.riskOption.length){
-        ga('send','event','analysis-by-need','UpdateSolutionOption',this.riskOption[this.curSolution].name);
+        gtag('event', 'analysis-by-need', {
+          'event_category': 'UpdateSolutionOption',
+          'event_label': this.riskOption[this.curSolution].name
+        });
       }
       this.SetMinimize(false);
       this.curDeg = "全部";
