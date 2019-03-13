@@ -94,6 +94,7 @@ Vue.component('info-graph', {
 		this.infoID = "info_"+this._uid;
 		$.get("/static/header.json",function(data){
 			this.header = data;
+			this.UpdateGraph();
 		}.bind(this));
 		window.addEventListener('resize', this.UpdateGraph);
 	},
@@ -105,6 +106,7 @@ Vue.component('info-graph', {
 			this.isOpen = false;
 		},
 		UpdateGraph: function(){
+			if(!this.header || this.header == "") return;
 			$("#"+this.infoID).text("");
 			switch(this.type){
 				case "gender":
